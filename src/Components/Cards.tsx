@@ -13,17 +13,23 @@ interface GameInterface {
 }
 function Cards({ dataGame }: GameInterface) {
 	return (
-		<div className="allcards">
-			<figure className="card">
-				<img src={dataGame.image} alt={dataGame.title} className="cardimage" />
-				<figcaption className="caption">
-					<ul className="custom-list">
-						<li>{dataGame.title}</li>
-						<li>{dataGame.price},99€</li>
-					</ul>
-				</figcaption>
-			</figure>
-		</div>
+		<figure className="card">
+			<div className="cardimage">
+				<img src={dataGame.image} alt={dataGame.title} />
+			</div>
+
+			<figcaption className="caption">
+				<ul className="custom-list">
+					<li>{dataGame.title}</li>
+					<li>{dataGame.price},99€</li>
+				</ul>
+				<img
+					src="..\src\assets\magic-lamp_yellow.png"
+					alt="magic"
+					className="magic-lamp"
+				/>
+			</figcaption>
+		</figure>
 	);
 }
 
