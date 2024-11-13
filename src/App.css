@@ -3,3 +3,10 @@
 	padding: 2rem;
 	text-align: center;
 }
+
+body {
+	background-image: url("/src/assets/desertnight.png");
+	height: auto;
+	min-height: 100vh;
+	margin: 0;
+}

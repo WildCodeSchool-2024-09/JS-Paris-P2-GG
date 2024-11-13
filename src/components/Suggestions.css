@@ -1,3 +1,7 @@
+h1 {
+	color: white;
+}
+
 .suggestions {
 	display: flex;
 	flex-wrap: wrap;

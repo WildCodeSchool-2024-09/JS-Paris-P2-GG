@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import "./Suggestions.css";
 
 interface Product {
@@ -11,7 +12,7 @@ interface Product {
 const Suggestions: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 
-	const excludedIds = [167, 101, 45];
+	const excludedIds = [167];
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products?sortBy=title&order=asc")
