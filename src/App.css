@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Jura:wght@300..700&family=Metrophobic&display=swap");
 
-:root {
+#root {
+	margin: 0 auto;
+  	padding: 2rem;
+ 	 text-align: center;
 	--titlefont: "Inika", sans-serif;
 	--textfont: "Metrophobic", sans-serif;
 }
 
 body {
 	background-image: url("src/assets/desert-night");
+	height: auto;
+  	min-height: 100vh;
+ 	margin: 0;
 }
