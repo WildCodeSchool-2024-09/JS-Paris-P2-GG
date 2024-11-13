@@ -6,8 +6,6 @@ fetch("https://dummyjson.com/products")
 	.then((res) => res.json())
 	.then(console.log);
 function App() {
-	const name = "toto";
-	const text = "Welcome";
 	const [filteredGames, setFilteredGames] = useState(games);
 
 	return (
