@@ -3,8 +3,6 @@ import Categories from "./components/Categories";
 import Suggestions from "./components/Suggestions";
 
 function App() {
-	const name = "toto";
-	const text = "Welcome";
 
 	return (
 		<>
