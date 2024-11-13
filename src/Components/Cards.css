@@ -1,0 +1,44 @@
+.card {
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: rgba(12, 99, 232, 0.5);
+
+	width: 391px;
+	height: 464px;
+	top: 670px;
+	left: 108px;
+	gap: 0px;
+	border: 1px 0px 0px 0px;
+	opacity: 0px;
+}
+.allcards {
+	display: flex;
+	flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+	gap: 0px; /* Espace entre les cartes */
+	justify-content: center;
+}
+.cardimage {
+	width: 359px;
+	height: 247px;
+	gap: 0px;
+	opacity: 0px;
+}
+.caption {
+	height: 115px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.custom-list {
+	list-style-type: none;
+	padding: 0;
+}
+
+.custom-list li::before {
+	content: "- ";
+	margin-right: 5px;
+}
