@@ -1,12 +1,13 @@
+import React from "react";
+import Recap from "./components/Recap";
+import "./components/Recap.css";
 import "./App.css";
 
 function App() {
-	const name = "toto";
-	const text = "Welcome";
 	return (
-		<>
-			{text} {name}
-		</>
+		<div className="App">
+			<Recap />
+		</div>
 	);
 }
 
