@@ -1,4 +1,5 @@
 import React from "react";
+import "./Recap.css";
 
 function Recap() {
 	return (

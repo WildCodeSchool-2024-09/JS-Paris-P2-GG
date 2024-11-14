@@ -1,0 +1,78 @@
+.questions-container {
+	display: flex;
+	justify-content: center;
+	align-items: center; /* Centers the content vertically */
+	height: 100vh; /* Full height of the viewport */
+}
+
+.genie-lamp {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center; /* Centers the genie-lamp images horizontally */
+}
+
+.genie-lassana {
+	height: 400px;
+	width: 400px;
+}
+
+.lamp-complete {
+	height: 500px;
+	width: 600px;
+	transform: scaleX(-1);
+	margin-top: -120px;
+	margin-left: 200px;
+}
+
+.question-box {
+	margin-top: -20%;
+}
+
+.question-box p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url("/src/assets/questios.png");
+	height: 200px;
+	width: 600px;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 20px;
+	border-radius: 10px;
+	font-family: var(--titlefont);
+	font-size: larger;
+	color: white;
+	max-width: 500px;
+	text-align: center;
+}
+
+.answer-options {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 0px;
+}
+
+.answer-button {
+	padding: 10px;
+	background-image: url(/src/assets/catlist.png);
+	background-position: center;
+	background-color: transparent;
+	width: 140px;
+	height: 45px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+.answer-button:hover {
+	animation: reverse;
+}
+
+.selected {
+	box-shadow: ;
+}
