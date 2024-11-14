@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import Toggle from "./Toggle";
 
 function NavBar() {
