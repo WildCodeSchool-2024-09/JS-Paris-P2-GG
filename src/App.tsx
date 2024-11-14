@@ -8,7 +8,6 @@ import Suggestions from "./components/Suggestions";
 function App() {
 	return (
 		<>
-			{}
 			<Recap />
 			<Cards />
 			<Suggestions />

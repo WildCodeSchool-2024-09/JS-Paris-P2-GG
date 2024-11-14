@@ -1,12 +1,23 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Categories.css";
+
+interface Product {
+	id: number;
+	title: string;
+	price: number;
+	thumbnail: string;
+}
+
+interface CategoryData {
+	name: string;
+	products: Product[];
+}
 
 const Categories: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [categories, setCategories] = useState<string[]>([]);
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	const [categoryData, setCategoryData] = useState<any>(null);
+	const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
 
 	const toggleAccordion = () => {
 		setIsOpen(!isOpen);
@@ -30,7 +41,10 @@ const Categories: React.FC = () => {
 		fetch(apiUrl)
 			.then((res) => res.json())
 			.then((data) => {
-				setCategoryData(data);
+				setCategoryData({
+					name: category,
+					products: data.products,
+				});
 			})
 			.catch((error) => console.error("Error fetching category data:", error));
 	};
@@ -48,10 +62,9 @@ const Categories: React.FC = () => {
 				<div className="accordion-content">
 					{categories.length > 0 ? (
 						<ul>
-							{categories.map((category, index) => (
+							{categories.map((category) => (
 								<li
-									// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-									key={index}
+									key={category}
 									className="category-item"
 									onClick={() => fetchCategoryData(category)}
 									onKeyUp={(e) => {
@@ -59,8 +72,6 @@ const Categories: React.FC = () => {
 											fetchCategoryData(category);
 										}
 									}}
-									// biome-ignore lint/a11y/noNoninteractiveTabindex: <explanation>
-									tabIndex={0}
 								>
 									{category}
 								</li>
@@ -76,12 +87,11 @@ const Categories: React.FC = () => {
 				<div className="category-products">
 					<h3>Products in {categoryData.name} category:</h3>
 					<div className="products-cat">
-						{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-						{categoryData.products.map((product: any) => (
+						{categoryData.products.map((product: Product) => (
 							<div key={product.id} className="suggestion-card">
 								<img src={product.thumbnail} alt={product.title} />
 								<h4>{product.title}</h4>
-								<p>€{product.price.toFixed(2)}</p>{" "}
+								<p>€{product.price.toFixed(2)}</p>
 							</div>
 						))}
 					</div>
