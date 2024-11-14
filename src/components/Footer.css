@@ -1,0 +1,11 @@
+.footer {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	gap: 1em;
+}
+
+#camel {
+	height: 2em;
+	padding-left: 15px;
+}
