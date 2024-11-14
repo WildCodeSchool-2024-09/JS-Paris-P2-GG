@@ -9,7 +9,6 @@ nav {
 	align-items: center;
 }
 
-
 #logoGG {
 	max-height: 5em;
 	padding-left: 1em;
@@ -29,14 +28,14 @@ ul {
 }
 
 nav-icons-background {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  background-color: rgba(12, 99, 232, 0.5); /* Fond personnalisé, avec une légère transparence */
-  display: flex;
-  justify-content: center;
-  z-index: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	background-color: rgba(12, 99, 232, 0.5); /* Fond personnalisé, avec une légère transparence */
+	display: flex;
+	justify-content: center;
+	z-index: 0;
 }
