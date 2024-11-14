@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import Toggle from "./Toggle";
 
 function NavBar() {
@@ -25,7 +25,7 @@ function NavBar() {
 						<li>
 							<img
 								className="nav-picto"
-								src="src/assets/icons8-coffre-au-trésor-50 (1).png"
+								src="src/assets/coffre.png"
 								alt="Yellow chest as basket"
 							/>
 						</li>
