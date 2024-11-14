@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import Toggle from "./Toggle";
 
 function NavBar() {
@@ -7,7 +7,9 @@ function NavBar() {
 
 	const handleToggle = (isDark) => {
 		setDarkMode(isDark);
-		document.body.style.backgroundImage = isDark ? "url('src/assets/backgroundday.jpg')" : "url('src/assets/desert-night-8807846-transformed.png')";
+		document.body.style.backgroundImage = isDark
+			? "url('src/assets/backgroundday.jpg')"
+			: "url('src/assets/desert-night-8807846-transformed.png')";
 		document.body.style.color = isDark ? "#000" : "#fff";
 	};
 	return (
@@ -23,7 +25,7 @@ function NavBar() {
 						<li>
 							<img
 								className="nav-picto"
-								src="src/assets/icons8-coffre-au-trésor-50 (1).png"
+								src="src/assets/coffre.png"
 								alt="Yellow chest as basket"
 							/>
 						</li>
