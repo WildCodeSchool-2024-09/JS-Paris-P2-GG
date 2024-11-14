@@ -7,7 +7,9 @@ function NavBar() {
 
 	const handleToggle = (isDark) => {
 		setDarkMode(isDark);
-		document.body.style.backgroundImage = isDark ? "url('src/assets/backgroundday.jpg')" : "url('src/assets/desert-night-8807846-transformed.png')";
+		document.body.style.backgroundImage = isDark
+			? "url('src/assets/backgroundday.jpg')"
+			: "url('src/assets/desert-night-8807846-transformed.png')";
 		document.body.style.color = isDark ? "#000" : "#fff";
 	};
 	return (
