@@ -11,7 +11,6 @@ interface Product {
 
 const Suggestions: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
-
 	const excludedIds = [167];
 
 	useEffect(() => {
@@ -37,13 +36,19 @@ const Suggestions: React.FC = () => {
 
 	return (
 		<div className="suggestions">
-			{products.map((product) => (
-				<div key={product.id} className="product-card">
-					<img src={product.thumbnail} alt={product.title} />
-					<h4>{product.title}</h4>
-					<p>€{product.price}</p>
-				</div>
-			))}
+			<h1>
+				Voici des merveilles, à peine plus coûteuses, mais qui pourraient
+				enchanter tes souhaits
+			</h1>
+			<div className="suggestions-container">
+				{products.map((product) => (
+					<div key={product.id} className="suggestion-card">
+						<img src={product.thumbnail} alt={product.title} />
+						<h4>{product.title}</h4>
+						<p>€{product.price}</p>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };

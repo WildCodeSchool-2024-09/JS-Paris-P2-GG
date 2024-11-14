@@ -38,8 +38,8 @@ const Categories: React.FC = () => {
 	return (
 		<div className="categories">
 			<p className="above-button-text">
-				Voici des merveilles, à peine plus coûteuses,
-				<br /> mais qui pourraient enchanter tes souhaits
+				Mes propositions ne t’enchantent pas ? <br /> Peut-être qu’un petit tour
+				par catégorie te révélera un vœu à ta mesure !
 			</p>
 			<button className="accordion" type="button" onClick={toggleAccordion}>
 				Categories
@@ -78,7 +78,7 @@ const Categories: React.FC = () => {
 					<div className="products-cat">
 						{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
 						{categoryData.products.map((product: any) => (
-							<div key={product.id} className="product-card">
+							<div key={product.id} className="suggestion-card">
 								<img src={product.thumbnail} alt={product.title} />
 								<h4>{product.title}</h4>
 								<p>€{product.price.toFixed(2)}</p>{" "}

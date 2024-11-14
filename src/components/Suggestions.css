@@ -4,13 +4,25 @@ h1 {
 
 .suggestions {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 16px;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 	padding: 20px;
 }
 
-.product-card {
+.suggestions h1 {
+	font-family: var(--titlefont);
+	margin-bottom: 20px;
+}
+
+.suggestions-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	justify-content: center;
+	width: 100%;
+}
+
+.suggestion-card {
 	background-color: rgba(12, 99, 232, 0.5);
 	border-radius: 8px;
 	width: 170px;
@@ -20,7 +32,7 @@ h1 {
 	padding: 16px;
 }
 
-.product-card img {
+.suggestion-card img {
 	width: 80%;
 	height: auto;
 	border-radius: 8px;
@@ -28,13 +40,19 @@ h1 {
 	padding: 16px;
 }
 
-.product-card h4 {
+.suggestion-card h4 {
 	font-size: 1rem;
 	margin: 0;
 	color: white;
+	font-family: var(--textfont);
 }
 
-.product-card p {
+.suggestion-card p {
 	color: white;
 	font-size: 0.8rem;
+	font-family: var(--textfont);
+}
+
+.above-button-text {
+	font-family: var(--titlefont);
 }
