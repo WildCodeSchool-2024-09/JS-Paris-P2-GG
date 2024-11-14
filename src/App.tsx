@@ -1,12 +1,14 @@
 import "./App.css";
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+
 
 function App() {
-	const name = "toto";
-	const text = "Welcome";
 	return (
-		<>
-			{text} {name}
-		</>
+		<section>
+			<NavBar />
+			<Footer />
+		</section>
 	);
 }
 
