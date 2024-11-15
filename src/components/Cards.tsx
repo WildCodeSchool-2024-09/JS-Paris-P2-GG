@@ -1,4 +1,3 @@
-import type React from "react";
 import { useEffect, useState } from "react";
 import "./Cards.css";
 
@@ -26,7 +25,7 @@ const Cards: React.FC = () => {
 				<div key={product.id} className="product-card">
 					<img src={product.thumbnail} alt={product.title} />
 					<h4>{product.title}</h4>
-					<p>€{product.price}</p>
+					<div className="price-badge">€{product.price.toFixed(2)}</div>
 				</div>
 			))}
 		</div>

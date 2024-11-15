@@ -71,8 +71,8 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 						<input
 							type="range"
 							min="0"
-							max="2000"
-							step="20"
+							max="3000"
+							step="10"
 							value={sliderValue}
 							onChange={(e) => setSliderValue(Number(e.target.value))}
 							className="budget-slider"

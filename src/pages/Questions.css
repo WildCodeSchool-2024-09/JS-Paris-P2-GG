@@ -112,6 +112,7 @@
 	width: 75px;
 	height: 45px;
 	background: url(/src/assets/camel.png);
+	transform: scaleX(-1);
 	background-size: 70%;
 	background-repeat: no-repeat;
 	cursor: pointer;
