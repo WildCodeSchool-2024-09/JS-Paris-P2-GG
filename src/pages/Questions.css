@@ -1,24 +1,26 @@
 .questions-container {
 	display: flex;
 	justify-content: center;
-	align-items: center; /* Centers the content vertically */
-	height: 100vh; /* Full height of the viewport */
+	align-items: center;
+	max-height: 100vh;
+	margin-top: 1%;
 }
 
 .genie-lamp {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center; /* Centers the genie-lamp images horizontally */
+	align-items: center;
 }
 
 .genie-lassana {
 	height: 400px;
 	width: 400px;
+	border-radius: 0 0 12% 12%;
 }
 
 .lamp-complete {
-	height: 500px;
+	height: 450px;
 	width: 600px;
 	transform: scaleX(-1);
 	margin-top: -120px;
@@ -34,6 +36,7 @@
 	justify-content: center;
 	align-items: center;
 	background-image: url("/src/assets/questios.png");
+	background-size: 130%;
 	height: 200px;
 	width: 600px;
 	background-position: center;
@@ -51,28 +54,74 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	margin-top: -10%;
 	gap: 0px;
 }
 
 .answer-button {
 	padding: 10px;
 	background-image: url(/src/assets/catlist.png);
+	background-size: 100%;
 	background-position: center;
 	background-color: transparent;
-	width: 140px;
-	height: 45px;
+	background-repeat: no-repeat;
+	width: 170px;
+	height: 60px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	color: white;
 	font-size: 16px;
-	transition: background-color 0.3s;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .answer-button:hover {
-	animation: reverse;
+	transform: translateY(-3px);
+	box-shadow: transparent;
 }
 
-.selected {
-	box-shadow: ;
+.answer-button:active {
+	transform: translateY(3px);
+	box-shadow: transparent;
+}
+
+.slider-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.budget-slider {
+	width: 50%;
+	appearance: none;
+	height: 8px;
+	border-radius: 5px;
+	background: #ddd;
+	outline: none;
+	transition: background 0.3s;
+}
+
+.budget-slider::-webkit-slider-thumb {
+	appearance: none;
+	width: 75px;
+	height: 45px;
+	background: url(/src/assets/camel.png);
+	background-size: 70%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.budget-slider:hover {
+	background: #ccc;
+}
+
+h4 {
+	color: white;
+	font-family: var(--textfont);
 }

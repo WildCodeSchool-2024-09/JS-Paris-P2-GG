@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Questions.css";
 
 interface QuestionsProps {
@@ -8,31 +8,44 @@ interface QuestionsProps {
 const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+	const [sliderValue, setSliderValue] = useState<number>(50);
 
 	const questions = [
 		"Le cadeau est pour qui?",
 		"La personne est un proche?",
 		"Quel est votre budget?",
+		"GG ça. Grâce aux pouvoirs des sables anciens, votre souhait sera exaucé !",
+		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux",
 	];
 
 	const answers = [
 		["Femme", "Homme", "Indifférent"],
-		["Oui", "Non"],
-		["Petit", "Moyenne", "Grand"],
+		["Oui", "Non", "Indifférent"],
+		[],
+		[],
+		["Réveler mes désirs"],
 	];
 
 	const handleSelectAnswer = (answer: string) => {
 		setSelectedAnswer(answer);
 
-		if (questionIndex < questions.length - 1) {
+		if (questionIndex === 4 && answer === "Réveler mes désirs") {
 			setTimeout(() => {
-				setQuestionIndex((prev) => prev + 1);
-				setSelectedAnswer(null);
+				onComplete();
 			}, 500);
 		} else {
-			setTimeout(onComplete, 500);
+			setTimeout(() => {
+				setSelectedAnswer(null);
+				setQuestionIndex((prev) => prev + 1);
+			}, 500);
 		}
 	};
+
+	useEffect(() => {
+		if (questionIndex === 3) {
+			setTimeout(() => setQuestionIndex(4), 4000);
+		}
+	}, [questionIndex]);
 
 	return (
 		<div className="questions-container">
@@ -48,21 +61,42 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 					className="lamp-complete"
 				/>
 			</div>
-
 			<div className="question-box">
 				<p>{questions[questionIndex]}</p>
-				<div className="answer-options">
-					{answers[questionIndex].map((answer, index) => (
+				{questionIndex === 2 ? (
+					<div className="slider-container">
+						<input
+							type="range"
+							min="0"
+							max="2000"
+							step="20"
+							value={sliderValue}
+							onChange={(e) => setSliderValue(Number(e.target.value))}
+							className="budget-slider"
+						/>
+						<h4>Budget: €{sliderValue}</h4>
 						<button
-							key={answer}
 							type="button"
-							onClick={() => handleSelectAnswer(answer)}
-							className={`answer-button ${selectedAnswer === answer ? "selected" : ""}`}
+							onClick={() => setQuestionIndex(3)}
+							className="answer-button"
 						>
-							{answer}
+							Je valide
 						</button>
-					))}
-				</div>
+					</div>
+				) : answers[questionIndex]?.length > 0 ? (
+					<div className="answer-options">
+						{answers[questionIndex].map((answer) => (
+							<button
+								key={answer}
+								type="button"
+								onClick={() => handleSelectAnswer(answer)}
+								className={`answer-button ${selectedAnswer === answer ? "selected" : ""}`}
+							>
+								{answer}
+							</button>
+						))}
+					</div>
+				) : null}
 			</div>
 		</div>
 	);
