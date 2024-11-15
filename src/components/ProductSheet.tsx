@@ -2,13 +2,12 @@ import "./ProductSheet.css";
 
 function ProductSheet() {
 	return (
+		<section className="ProductSection">
 		<div className="CardProductSheet">
 			<img src="src/assets/qatar-airways-thumb.png" alt="Pour test" />
 			<h4>Titre produit</h4>
 			<p>prix €</p>
-			<p>
-				{" "}
-				Description : Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			<p>	Description : Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				Nam ac sem fringilla, scelerisque enim eu, laoreet urna. Praesent
 				porttitor ornare varius. Cras quis neque neque. Vestibulum tincidunt
 				orci non sollicitudin auctor. Nam sagittis, ligula in bibendum finibus,
@@ -21,6 +20,7 @@ function ProductSheet() {
 				ultrices quis.
 			</p>
 		</div>
+		</section>
 	);
 }
 
