@@ -26,7 +26,7 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 		["Réveler mes désirs"],
 	];
 
-	const sound = new Audio("src/assets/ggçasong.mp3");
+	const sound = new Audio("src/assets/ggsong.mp3");
 
 	const handleSelectAnswer = (answer: string) => {
 		setSelectedAnswer(answer);
