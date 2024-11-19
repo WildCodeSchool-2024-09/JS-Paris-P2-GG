@@ -1,0 +1,71 @@
+.intro {
+	text-align: center;
+}
+
+.lamp-container {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.lamp {
+	width: 600px;
+	transform: scaleX(-1);
+}
+
+.smoke {
+	position: absolute;
+	left: 15%;
+	transform: scaleX(-1);
+	width: 500px;
+	opacity: 0;
+	animation: fade-in 1s forwards;
+}
+
+.genie-dialog {
+	position: relative;
+	text-align: center;
+}
+
+.genie {
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 0;
+	animation: fade-in 1s forwards;
+}
+
+.dialog {
+	position: relative;
+	margin-top: 300px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 15px;
+	padding: 20px;
+	width: 300px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dialog p {
+	font-size: 18px;
+	line-height: 1.5;
+	color: #333;
+}
+
+.dialog-button {
+	margin-top: 10px;
+	padding: 10px 20px;
+	font-size: 18px;
+	background-color: #ffcc00;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.dialog-button:hover {
+	background-color: #ffaa00;
+}
+
+@keyframes fade-in {
+	to {
+		opacity: 1;
+	}
+}
