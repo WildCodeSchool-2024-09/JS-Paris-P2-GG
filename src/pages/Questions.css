@@ -3,7 +3,7 @@
 	justify-content: center;
 	align-items: center;
 	max-height: 100vh;
-	margin-top: 1%;
+	margin-top: 3%;
 }
 
 .genie-lamp {
@@ -22,7 +22,6 @@
 .lamp-complete {
 	height: 450px;
 	width: 600px;
-	transform: scaleX(-1);
 	margin-top: -120px;
 	margin-left: 200px;
 }

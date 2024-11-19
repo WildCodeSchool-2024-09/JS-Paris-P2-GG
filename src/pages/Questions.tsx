@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import "./Questions.css";
 
@@ -12,7 +13,7 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 
 	const questions = [
 		"Le cadeau est pour qui?",
-		"La personne est un proche?",
+		"Quels sont ses centres d'intérêts ?",
 		"Quel est votre budget?",
 		"GG ça. Grâce aux pouvoirs des sables anciens, votre souhait sera exaucé !",
 		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux",
@@ -20,19 +21,16 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 
 	const answers = [
 		["Femme", "Homme", "Indifférent"],
-		["Oui", "Non", "Indifférent"],
+		["Beauté", "Maison", "Mode", "High-tech", "Surprends moi"],
 		[],
 		[],
 		["Réveler mes désirs"],
 	];
 
-	const sound = new Audio("src/assets/ggsong.mp3");
-
 	const handleSelectAnswer = (answer: string) => {
 		setSelectedAnswer(answer);
 
 		if (questionIndex === 4 && answer === "Réveler mes désirs") {
-			sound.play();
 			setTimeout(() => {
 				onComplete();
 			}, 500);
@@ -51,57 +49,79 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 	}, [questionIndex]);
 
 	return (
-		<div className="questions-container">
+		<motion.div
+			className="questions-container"
+			initial={{ y: 100, opacity: 0 }} // Start from below
+			animate={{ y: 0, opacity: 1 }} // Move to its final position
+			transition={{ duration: 4 }} // Smooth transition
+		>
 			<div className="genie-lamp">
-				<img
+				<motion.img
 					src="src/assets/Lassana-removebg-final.png"
-					alt="Lala"
+					alt="Genie"
 					className="genie-lassana"
+					initial={{ y: 70, opacity: 50 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ duration: 2.5 }}
 				/>
-				<img
+				<motion.img
 					src="src/assets/lampsmoke.png"
-					alt="Lampcomplete"
-					className="lamp-complete"
+					alt="Lamp"
+					className="lamp-complete mirror"
+					initial={{ scaleX: -1 }}
+					animate={{ scale: 1 }}
+					transition={{ duration: 1 }}
 				/>
 			</div>
+
 			<div className="question-box">
 				<p>{questions[questionIndex]}</p>
+
 				{questionIndex === 2 ? (
 					<div className="slider-container">
 						<input
 							type="range"
 							min="0"
-							max="3000"
-							step="10"
+							max="2000"
+							step="20"
 							value={sliderValue}
 							onChange={(e) => setSliderValue(Number(e.target.value))}
 							className="budget-slider"
 						/>
-						<h4>Budget: €{sliderValue}</h4>
-						<button
+						<h4>Budget: {sliderValue}€</h4>
+						<motion.button
 							type="button"
 							onClick={() => setQuestionIndex(3)}
 							className="answer-button"
+							whileHover={{ scale: 1.1 }}
+							whileTap={{ scale: 0.95 }}
 						>
 							Je valide
-						</button>
+						</motion.button>
 					</div>
 				) : answers[questionIndex]?.length > 0 ? (
 					<div className="answer-options">
 						{answers[questionIndex].map((answer) => (
-							<button
+							<motion.button
 								key={answer}
 								type="button"
 								onClick={() => handleSelectAnswer(answer)}
-								className={`answer-button ${selectedAnswer === answer ? "selected" : ""}`}
+								className={`answer-button ${
+									selectedAnswer === answer ? "selected" : ""
+								}`}
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.95 }}
+								initial={{ x: -50, opacity: 0 }}
+								animate={{ x: 0, opacity: 1 }}
+								transition={{ duration: 0.3, delay: 0.2 }}
 							>
 								{answer}
-							</button>
+							</motion.button>
 						))}
 					</div>
 				) : null}
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

@@ -12,6 +12,7 @@ h1 {
 .suggestions h1 {
 	font-family: var(--titlefont);
 	margin-bottom: 20px;
+	filter: drop-shadow(2px 4px 6px black);
 }
 
 .suggestions-container {
@@ -25,8 +26,8 @@ h1 {
 .suggestion-card {
 	background-color: rgba(12, 99, 232, 0.5);
 	border-radius: 8px;
-	width: 170px;
-	height: 250px;
+	width: 180px;
+	height: 260px;
 	text-align: center;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	padding: 16px;
@@ -48,9 +49,15 @@ h1 {
 }
 
 .suggestion-card p {
-	color: white;
-	font-size: 0.8rem;
-	font-family: var(--textfont);
+	display: flex;
+	margin-bottom: auto;
+	width: 50px;
+	background-color: #ffc107;
+	color: #000;
+	font-size: .8rem;
+	padding: 8px 12px;
+	border-radius: 12px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .above-button-text {
