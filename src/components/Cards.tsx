@@ -1,7 +1,5 @@
-import type React from "react";
 import { useEffect, useState } from "react";
 import "./Cards.css";
-
 interface Product {
 	id: number;
 	title: string;
@@ -11,11 +9,9 @@ interface Product {
 interface ImagesState {
 	[key: number]: string;
 }
-
 const Cards: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [images, setImages] = useState<ImagesState>({});
-
 	useEffect(() => {
 		fetch("https://dummyjson.com/products")
 			.then((res) => res.json())
@@ -23,7 +19,6 @@ const Cards: React.FC = () => {
 				setProducts(data.products.slice(0, 5));
 			});
 	}, []);
-
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
 			const currentImage =
@@ -32,20 +27,17 @@ const Cards: React.FC = () => {
 				currentImage === "src\\assets\\magic-lamp.png"
 					? "src\\assets\\magic-lamp_yellow.png"
 					: "src\\assets\\magic-lamp.png";
-
 			return {
 				...prevImages,
 				[productId]: newImage, //mettre à jour la clé
 			};
 		});
 	};
-
 	const handleKeyDown = (event: React.KeyboardEvent, productId: number) => {
 		if (event.key === "Enter" || event.key === " ") {
 			changeImage(productId);
 		}
 	};
-
 	return (
 		<div className="cards">
 			{products.map((product) => (
@@ -56,9 +48,13 @@ const Cards: React.FC = () => {
 						className="product-image"
 					/>
 					<div className="text-and-wishlist">
-						<div className="title-and-price">
-							<h4>{product.title}</h4>
-							<p>€{product.price}</p>
+						<div className="title-product">
+							<div>
+								<h4>{product.title}</h4>
+							</div>
+							<div className="price">
+								<p>€{product.price}</p>
+							</div>
 						</div>
 						<button
 							type="button"
@@ -79,5 +75,4 @@ const Cards: React.FC = () => {
 		</div>
 	);
 };
-
 export default Cards;
