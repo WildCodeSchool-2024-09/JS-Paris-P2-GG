@@ -8,10 +8,13 @@ interface Product {
 	price: number;
 	thumbnail: string;
 }
+interface ImagesState {
+	[key: number]: string;
+}
 
 const Cards: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
-	const [images, setImages] = useState<{ [key: number]: string }>({});
+	const [images, setImages] = useState<ImagesState>({});
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products")
@@ -32,7 +35,7 @@ const Cards: React.FC = () => {
 
 			return {
 				...prevImages,
-				[productId]: newImage,
+				[productId]: newImage, //mettre à jour la clé
 			};
 		});
 	};
@@ -57,14 +60,17 @@ const Cards: React.FC = () => {
 							<h4>{product.title}</h4>
 							<p>€{product.price}</p>
 						</div>
-						<button type="button">
+						<button
+							type="button"
+							className="wishlist-button"
+							onClick={() => changeImage(product.id)}
+							onKeyDown={(event) => handleKeyDown(event, product.id)}
+							tabIndex={0}
+						>
 							<img
 								src={images[product.id] || "src\\assets\\magic-lamp.png"}
 								alt="magic lamp"
 								className="magic-lamp"
-								onClick={() => changeImage(product.id)}
-								onKeyDown={(event) => handleKeyDown(event, product.id)}
-								tabIndex={0}
 							/>
 						</button>
 					</div>
