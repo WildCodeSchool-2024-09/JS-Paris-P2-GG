@@ -15,8 +15,8 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 		"Le cadeau est pour qui?",
 		"Quels sont ses centres d'intérêts ?",
 		"Quel est votre budget?",
-		"GG ça. Grâce aux pouvoirs des sables anciens, votre souhait sera exaucé !",
-		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux",
+		"Grâce aux pouvoirs des sables anciens, votre souhait sera exaucé !",
+		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux. GG ça!",
 	];
 
 	const answers = [
@@ -44,7 +44,7 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 
 	useEffect(() => {
 		if (questionIndex === 3) {
-			setTimeout(() => setQuestionIndex(4), 4000);
+			setTimeout(() => setQuestionIndex(4), 3000);
 		}
 	}, [questionIndex]);
 
@@ -82,7 +82,7 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 						<input
 							type="range"
 							min="0"
-							max="2000"
+							max="50000"
 							step="20"
 							value={sliderValue}
 							onChange={(e) => setSliderValue(Number(e.target.value))}

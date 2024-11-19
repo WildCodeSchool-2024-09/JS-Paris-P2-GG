@@ -53,7 +53,7 @@ const Cards: React.FC = () => {
 								<h4>{product.title}</h4>
 							</div>
 							<div className="price">
-								<p>€{product.price}</p>
+								<h5>€{product.price}</h5>
 							</div>
 						</div>
 						<button
