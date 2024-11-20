@@ -1,17 +1,7 @@
 import "./NavBar.css";
-import { useState } from "react";
 import Toggle from "./Toggle";
 
 function NavBar() {
-	const [darkMode, setDarkMode] = useState(false);
-
-	const handleToggle = (isDark) => {
-		setDarkMode(isDark);
-		document.body.style.backgroundImage = isDark
-			? "url('src/assets/backgroundday.jpg')"
-			: "url('src/assets/desert-night-8807846-transformed.png')";
-		document.body.style.color = isDark ? "#000" : "#fff";
-	};
 	return (
 		<nav>
 			<div nav-icons-background>
@@ -37,7 +27,7 @@ function NavBar() {
 							/>
 						</li>
 						<li>
-							<Toggle onToggle={handleToggle} />
+							<Toggle />
 						</li>
 					</ul>
 				</section>

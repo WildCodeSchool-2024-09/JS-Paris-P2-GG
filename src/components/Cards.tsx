@@ -1,15 +1,12 @@
-import type React from "react";
 import { useEffect, useState } from "react";
 import "./Cards.css";
+import type Product from "../type/Product";
 
-interface Product {
-	id: number;
-	title: string;
-	price: number;
-	thumbnail: string;
+interface CardsType {
+	setSelectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-const Cards: React.FC = () => {
+function Cards({ setSelectedProduct }: CardsType) {
 	const [products, setProducts] = useState<Product[]>([]);
 
 	useEffect(() => {
@@ -21,16 +18,23 @@ const Cards: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="cards">
-			{products.map((product) => (
-				<div key={product.id} className="product-card">
-					<img src={product.thumbnail} alt={product.title} />
-					<h4>{product.title}</h4>
-					<p>€{product.price}</p>
-				</div>
-			))}
+		<div>
+			<div className="cards">
+				{products.map((product) => (
+					<button
+						type="button"
+						key={product.id}
+						className="product-card"
+						onClick={() => setSelectedProduct(product)}
+					>
+						<img src={product.thumbnail} alt={product.title} />
+						<h4>{product.title}</h4>
+						<p>{product.price} €</p>
+					</button>
+				))}
+			</div>
 		</div>
 	);
-};
+}
 
 export default Cards;
