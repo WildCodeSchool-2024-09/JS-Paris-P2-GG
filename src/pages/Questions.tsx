@@ -6,8 +6,8 @@ interface QuestionsProps {
 	onComplete: () => void;
 }
 
-const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
-	const [questionIndex, setQuestionIndex] = useState(0);
+function Questions({ onComplete }: QuestionsProps) {
+	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 	const [sliderValue, setSliderValue] = useState<number>(50);
 
@@ -28,15 +28,11 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 	const handleSelectAnswer = (answer: string) => {
 		setSelectedAnswer(answer);
 
-		if (questionIndex === 3 && answer === "Réveler mes désirs") {
-			setTimeout(() => {
-				onComplete();
-			}, 500);
+		if (currentQuestion === 3 && answer === "Réveler mes désirs") {
+			onComplete();
 		} else {
-			setTimeout(() => {
-				setSelectedAnswer(null);
-				setQuestionIndex((prev) => prev + 1);
-			}, 500);
+			setSelectedAnswer(null);
+			setCurrentQuestion((prev) => prev + 1);
 		}
 	};
 
@@ -67,9 +63,9 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 			</div>
 
 			<div className="question-box">
-				<p>{questions[questionIndex]}</p>
+				<p>{questions[currentQuestion]}</p>
 
-				{questionIndex === 2 ? (
+				{currentQuestion === 2 ? (
 					<div className="slider-container">
 						<input
 							type="range"
@@ -83,7 +79,7 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 						<h4>Budget: {sliderValue}€</h4>
 						<motion.button
 							type="button"
-							onClick={() => setQuestionIndex(3)}
+							onClick={() => setCurrentQuestion(3)}
 							className="answer-button"
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.95 }}
@@ -91,9 +87,9 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 							Je valide
 						</motion.button>
 					</div>
-				) : answers[questionIndex]?.length > 0 ? (
+				) : answers[currentQuestion]?.length > 0 ? (
 					<div className="answer-options">
-						{answers[questionIndex].map((answer) => (
+						{answers[currentQuestion].map((answer) => (
 							<motion.button
 								key={answer}
 								type="button"
@@ -115,6 +111,6 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 			</div>
 		</motion.div>
 	);
-};
+}
 
 export default Questions;

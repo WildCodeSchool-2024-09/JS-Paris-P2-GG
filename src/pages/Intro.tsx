@@ -10,7 +10,7 @@ interface IntroProps {
 	onComplete: () => void;
 }
 
-const Intro: React.FC<IntroProps> = ({ onComplete }) => {
+function Intro({ onComplete }: IntroProps) {
 	const [showSmoke, setShowSmoke] = useState(false);
 	const [showGenie, setShowGenie] = useState(false);
 	const [showTitle, setShowTitle] = useState(true);
@@ -72,6 +72,6 @@ const Intro: React.FC<IntroProps> = ({ onComplete }) => {
 			</div>
 		</div>
 	);
-};
+}
 
 export default Intro;

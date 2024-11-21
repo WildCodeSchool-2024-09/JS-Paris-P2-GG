@@ -1,17 +1,22 @@
+import type React from "react";
 import { useEffect, useState } from "react";
 import "./Cards.css";
+
 interface Product {
 	id: number;
 	title: string;
 	price: number;
 	thumbnail: string;
 }
+
 interface ImagesState {
 	[key: number]: string;
 }
+
 const Cards: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [images, setImages] = useState<ImagesState>({});
+
 	useEffect(() => {
 		fetch("https://dummyjson.com/products")
 			.then((res) => res.json())
@@ -29,7 +34,7 @@ const Cards: React.FC = () => {
 					: "src\\assets\\magic-lamp.png";
 			return {
 				...prevImages,
-				[productId]: newImage, //mettre à jour la clé
+				[productId]: newImage,
 			};
 		});
 	};
