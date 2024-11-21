@@ -1,6 +1,6 @@
 import type React from "react";
 import { useEffect, useState } from "react";
-import "./Cards.css";
+import "./ProductList.css";
 
 interface Product {
 	id: number;
@@ -13,7 +13,7 @@ interface ImagesState {
 	[key: number]: string;
 }
 
-const Cards: React.FC = () => {
+const ProductList: React.FC = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [images, setImages] = useState<ImagesState>({});
 
@@ -44,7 +44,7 @@ const Cards: React.FC = () => {
 		}
 	};
 	return (
-		<div className="cards">
+		<div className="product-list">
 			{products.map((product) => (
 				<div key={product.id} className="product-card">
 					<img
@@ -80,4 +80,4 @@ const Cards: React.FC = () => {
 		</div>
 	);
 };
-export default Cards;
+export default ProductList;
