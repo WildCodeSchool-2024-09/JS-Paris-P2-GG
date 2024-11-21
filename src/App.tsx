@@ -35,7 +35,7 @@ function App() {
 					<Categories />
 				</>
 			)}
-			<Footer />
+			{!showIntro && <Footer />}
 		</>
 	);
 }

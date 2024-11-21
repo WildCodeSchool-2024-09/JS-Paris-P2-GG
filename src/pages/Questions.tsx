@@ -15,14 +15,12 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 		"Le cadeau est pour qui?",
 		"Quels sont ses centres d'intérêts ?",
 		"Quel est votre budget?",
-		"Grâce aux pouvoirs des sables anciens, votre souhait sera exaucé !",
-		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux. GG ça!",
+		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux.",
 	];
 
 	const answers = [
 		["Femme", "Homme", "Indifférent"],
 		["Beauté", "Maison", "Mode", "High-tech", "Surprends moi"],
-		[],
 		[],
 		["Réveler mes désirs"],
 	];
@@ -30,7 +28,7 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 	const handleSelectAnswer = (answer: string) => {
 		setSelectedAnswer(answer);
 
-		if (questionIndex === 4 && answer === "Réveler mes désirs") {
+		if (questionIndex === 3 && answer === "Réveler mes désirs") {
 			setTimeout(() => {
 				onComplete();
 			}, 500);
@@ -42,18 +40,12 @@ const Questions: React.FC<QuestionsProps> = ({ onComplete }) => {
 		}
 	};
 
-	useEffect(() => {
-		if (questionIndex === 3) {
-			setTimeout(() => setQuestionIndex(4), 3000);
-		}
-	}, [questionIndex]);
-
 	return (
 		<motion.div
 			className="questions-container"
-			initial={{ y: 100, opacity: 0 }} // Start from below
-			animate={{ y: 0, opacity: 1 }} // Move to its final position
-			transition={{ duration: 4 }} // Smooth transition
+			initial={{ y: 100, opacity: 0 }}
+			animate={{ y: 0, opacity: 1 }}
+			transition={{ duration: 4 }}
 		>
 			<div className="genie-lamp">
 				<motion.img
