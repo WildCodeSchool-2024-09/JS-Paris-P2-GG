@@ -14,7 +14,7 @@ interface CategoryData {
 	products: Product[];
 }
 
-const Categories: React.FC = () => {
+function Categories() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [categories, setCategories] = useState<string[]>([]);
 	const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
@@ -99,6 +99,6 @@ const Categories: React.FC = () => {
 			)}
 		</div>
 	);
-};
+}
 
 export default Categories;
