@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+
 import "./ProductList.css";
-import type Product from "../type/Product";
+
 import { useSelectedProduct } from "../context/SelectedProductContext";
 
+import type Product from "../type/Product";
 
 function ProductList() {
 	const [products, setProducts] = useState<Product[]>([]);
@@ -15,8 +17,6 @@ function ProductList() {
 				setProducts(data.products.slice(0, 5));
 			});
 	}, []);
-
-
 
 	return (
 		<div>

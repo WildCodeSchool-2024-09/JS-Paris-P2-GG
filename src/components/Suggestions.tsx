@@ -7,7 +7,6 @@ function Suggestions() {
 	const [products, setProducts] = useState<Product[]>([]);
 	const excludedIds = [167];
 	const { setSelectedProduct } = useSelectedProduct();
-	
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products?sortBy=title&order=asc")

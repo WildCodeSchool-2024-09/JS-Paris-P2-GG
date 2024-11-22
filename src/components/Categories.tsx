@@ -1,4 +1,3 @@
-import type React from "react";
 import { useState } from "react";
 import "./Categories.css";
 
@@ -9,6 +8,10 @@ interface Product {
 	thumbnail: string;
 }
 
+interface Category {
+	name: string;
+}
+
 interface CategoryData {
 	name: string;
 	products: Product[];
@@ -16,18 +19,21 @@ interface CategoryData {
 
 function Categories() {
 	const [isOpen, setIsOpen] = useState(false);
-	const [categories, setCategories] = useState<string[]>([]);
+	const [categories, setCategories] = useState<Category[]>([]);
 	const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
 
 	const toggleAccordion = () => {
 		setIsOpen(!isOpen);
 
 		if (!isOpen) {
-			fetch("https://dummyjson.com/products/category-list")
+			fetch("https://dummyjson.com/products/categories")
 				.then((res) => res.json())
 				.then((data) => {
 					const filteredCategories = data.filter(
-						(category: string) => category !== "groceries",
+						(category: Category) =>
+							category.name !== "Groceries" &&
+							category.name !== "Motorcycle" &&
+							category.name !== "Vehicle",
 					);
 					setCategories(filteredCategories);
 				});
@@ -37,16 +43,32 @@ function Categories() {
 	};
 
 	const fetchCategoryData = (category: string) => {
-		const apiUrl = `https://dummyjson.com/products/category/${category}`;
+		const slugifiedCategory = category
+			.trim()
+			.toLowerCase()
+			.replace(/\s+/g, "-");
+
+		const apiUrl = `https://dummyjson.com/products/category/${slugifiedCategory}`;
+
 		fetch(apiUrl)
 			.then((res) => res.json())
 			.then((data) => {
+				if (data.products) {
+					setCategoryData({
+						name: category,
+						products: data.products,
+					});
+				} else {
+					console.error(`No products found for category: ${category}`);
+				}
+			})
+			.catch((error) => {
+				console.error("Error fetching category data:", error);
 				setCategoryData({
 					name: category,
-					products: data.products,
+					products: [],
 				});
-			})
-			.catch((error) => console.error("Error fetching category data:", error));
+			});
 	};
 
 	return (
@@ -64,16 +86,16 @@ function Categories() {
 						<ul>
 							{categories.map((category) => (
 								<li
-									key={category}
+									key={category.name}
 									className="category-item"
-									onClick={() => fetchCategoryData(category)}
+									onClick={() => fetchCategoryData(category.name)}
 									onKeyUp={(e) => {
 										if (e.key === "Enter" || e.key === " ") {
-											fetchCategoryData(category);
+											fetchCategoryData(category.name);
 										}
 									}}
 								>
-									{category}
+									{category.name}
 								</li>
 							))}
 						</ul>
@@ -91,7 +113,7 @@ function Categories() {
 							<div key={product.id} className="suggestion-card">
 								<img src={product.thumbnail} alt={product.title} />
 								<h4>{product.title}</h4>
-								<p>€{product.price.toFixed(2)}</p>
+								<p>{product.price.toFixed(2)}€</p>
 							</div>
 						))}
 					</div>

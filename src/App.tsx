@@ -1,5 +1,7 @@
-import "./App.css";
 import { useState } from "react";
+import "./App.css";
+import Intro from "./pages/Intro";
+import Questions from "./pages/Questions";
 import ProductList from "./components/ProductList";
 import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
@@ -12,22 +14,48 @@ import type Product from "./type/Product";
 import { useSelectedProduct } from "./context/SelectedProductContext";
 
 function App() {
-	const {selectedProduct, setSelectedProduct} = useSelectedProduct();
+	const [showIntro, setShowIntro] = useState(true);
+	const [showQuestions, setShowQuestions] = useState(false);
+
+	const [answers, setAnswers] = useState<string[]>([]);
+	const [budget, setBudget] = useState<number | null>(null);
+
+	const handleIntroComplete = () => {
+		setShowIntro(false);
+		setShowQuestions(true);
+	};
+
+	const handleQuestionsComplete = (
+		selectedAnswers: string[],
+		budgetValue: number,
+	) => {
+		setAnswers(selectedAnswers);
+		setBudget(budgetValue);
+		setShowQuestions(false);
+	};
+
+	const { selectedProduct, setSelectedProduct } = useSelectedProduct();
 	return (
 		<>
 			<NavBar />
-			<Recap />
-			<ProductList />
-			<Suggestions />
-			{selectedProduct ? (
-				<ProductModal
-					product={selectedProduct}
+			{showIntro ? (
+				<Intro onComplete={handleIntroComplete} />
+			) : showQuestions ? (
+				<Questions
+					onComplete={(answers, budget) =>
+						handleQuestionsComplete(answers, budget)
+					}
 				/>
 			) : (
-				<></>
+				<>
+					<Recap answers={answers} budget={budget} />
+					<ProductList answers={answers} budget={budget} />
+					<Suggestions />
+					{selectedProduct ? <ProductModal product={selectedProduct} /> : <></>}
+					<Categories />
+				</>
 			)}
-			<Categories />
-			<Footer />
+			{!showIntro && <Footer />}
 		</>
 	);
 }
