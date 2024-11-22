@@ -14,6 +14,35 @@ interface CategoryData {
 	products: Product[];
 }
 
+const categoryTranslations: { [key: string]: string } = {
+	smartphones: "Smartphones",
+	laptops: "Ordinateurs Portables",
+	fragrances: "Parfums",
+	"skin-care": "Soins de la peau",
+	"home-decoration": "Décoration",
+	beauty: "Beauté",
+	furniture: "Meubles",
+	"kitchen-accessories": "Accessoires de cuisine",
+	"mens-shirts": "Hauts homme",
+	"mens-shoes": "Chaussures homme",
+	"mens-watches": "Montres homme",
+	"mobile-accessories": "Accessoire de téléphone",
+	motorcycle: "Moto",
+	"sports-accessories": "Accessoires de sport",
+	sunglasses: "Lunettes de soleil",
+	tablets: "Tablettes",
+	tops: "Hauts femmes",
+	"womens-bags": "Sacs femme",
+	"womens-dresses": "Robes femme",
+	"womens-jewellery": "Bijoux femme",
+	"womens-shoes": "Chaussures femmes",
+	"womens-watches": "Montres femme",
+};
+
+const translateCategory = (category: string): string => {
+	return categoryTranslations[category] || category;
+};
+
 const Categories: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [categories, setCategories] = useState<string[]>([]);
@@ -56,7 +85,7 @@ const Categories: React.FC = () => {
 				par catégorie te révélera un vœu à ta mesure !
 			</p>
 			<button className="accordion" type="button" onClick={toggleAccordion}>
-				Categories
+				Catégories
 			</button>
 			{isOpen && (
 				<div className="accordion-content">
@@ -73,7 +102,7 @@ const Categories: React.FC = () => {
 										}
 									}}
 								>
-									{category}
+									{translateCategory(category)}
 								</li>
 							))}
 						</ul>
@@ -85,7 +114,9 @@ const Categories: React.FC = () => {
 
 			{isOpen && categoryData && (
 				<div className="category-products">
-					<h3>Products in {categoryData.name} category:</h3>
+					<h3>
+						Produits dans la catégorie {translateCategory(categoryData.name)} :
+					</h3>
 					<div className="products-cat">
 						{categoryData.products.map((product: Product) => (
 							<div key={product.id} className="suggestion-card">
