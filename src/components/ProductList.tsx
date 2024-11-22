@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import "./Cards.css";
+import "./ProductList.css";
 import type Product from "../type/Product";
+import { useSelectedProduct } from "../context/SelectedProductContext";
 
-interface CardsType {
-	setSelectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
-}
 
-function Cards({ setSelectedProduct }: CardsType) {
+function ProductList() {
 	const [products, setProducts] = useState<Product[]>([]);
+	const { setSelectedProduct } = useSelectedProduct();
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products")
@@ -16,6 +15,8 @@ function Cards({ setSelectedProduct }: CardsType) {
 				setProducts(data.products.slice(0, 5));
 			});
 	}, []);
+
+
 
 	return (
 		<div>
@@ -37,4 +38,4 @@ function Cards({ setSelectedProduct }: CardsType) {
 	);
 }
 
-export default Cards;
+export default ProductList;

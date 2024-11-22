@@ -1,20 +1,18 @@
 import type Product from "../type/Product";
 import "./ProductModal.css";
+import { useSelectedProduct } from "../context/SelectedProductContext";
 
 interface ProductModalProps {
 	product: Product | null;
-	setSelectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-function ProductModal({ product, setSelectedProduct }: ProductModalProps) {
-	const closeModal = () => {
-		setSelectedProduct(null);
-	};
-
+function ProductModal({ product }: ProductModalProps) {
+	const { setSelectedProduct } = useSelectedProduct();
 	return (
 		<div className="modal">
 			<div className="modal-content">
-				<button type="button" className="close" onClick={closeModal}>
+				<button type="button" className="close" onClick={() => {
+		setSelectedProduct(null)}}>
 					X
 				</button>
 				{product?.thumbnail ? (

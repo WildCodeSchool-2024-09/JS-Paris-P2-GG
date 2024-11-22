@@ -1,13 +1,13 @@
-import "./Toggle.css";
+import "./ToggleTheme.css";
 import { useState } from "react";
 
-const Toggle = () => {
-	const [darkMode, setDarkMode] = useState(false);
+const ToggleTheme = () => {
+	const [darkMode, setDarkMode] = useState(true);
 	const handleToggle = () => {
 		setDarkMode(!darkMode);
 		document.body.style.backgroundImage = darkMode
-			? "url('src/assets/desert-night-8807846-transformed.png')"
-			: "url('src/assets/backgroundday.jpg')";
+			? "url('src/assets/backgroundday.jpg')"
+			: "url('src/assets/desert-night-8807846-transformed.png')"
 		document.body.style.color = darkMode ? "#fff" : "#000";
 	};
 
@@ -19,4 +19,4 @@ const Toggle = () => {
 	);
 };
 
-export default Toggle;
+export default ToggleTheme;

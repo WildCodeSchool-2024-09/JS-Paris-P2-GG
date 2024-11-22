@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import Toggle from "./Toggle";
+import ToggleTheme from "./ToggleTheme";
 
 function NavBar() {
 	return (
@@ -27,7 +27,7 @@ function NavBar() {
 							/>
 						</li>
 						<li>
-							<Toggle />
+							<ToggleTheme />
 						</li>
 					</ul>
 				</section>

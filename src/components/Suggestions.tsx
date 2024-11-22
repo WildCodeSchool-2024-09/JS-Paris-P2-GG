@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import "./Suggestions.css";
 import type Product from "../type/Product";
+import { useSelectedProduct } from "../context/SelectedProductContext";
 
-interface SuggestionType {
-	setSelectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
-}
-
-function Suggestions({ setSelectedProduct }: SuggestionType) {
+function Suggestions() {
 	const [products, setProducts] = useState<Product[]>([]);
 	const excludedIds = [167];
+	const { setSelectedProduct } = useSelectedProduct();
+	
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products?sortBy=title&order=asc")
