@@ -1,17 +1,12 @@
-import type React from "react";
 import { useEffect, useState } from "react";
 import "./Suggestions.css";
+import type Product from "../type/Product";
+import { useSelectedProduct } from "../context/SelectedProductContext";
 
-interface Product {
-	id: number;
-	title: string;
-	price: number;
-	thumbnail: string;
-}
-
-const Suggestions: React.FC = () => {
+function Suggestions() {
 	const [products, setProducts] = useState<Product[]>([]);
 	const excludedIds = [167];
+	const { setSelectedProduct } = useSelectedProduct();
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products?sortBy=title&order=asc")
@@ -40,17 +35,24 @@ const Suggestions: React.FC = () => {
 				Voici des merveilles, à peine plus coûteuses, mais qui pourraient
 				enchanter tes souhaits
 			</h1>
+
 			<div className="suggestions-container">
 				{products.map((product) => (
-					<div key={product.id} className="suggestion-card">
+					<button
+						type="button"
+						key={product.id}
+						className="suggestion-card"
+						onClick={() => setSelectedProduct(product)}
+						onKeyUp={() => setSelectedProduct(product)}
+					>
 						<img src={product.thumbnail} alt={product.title} />
 						<h4>{product.title}</h4>
 						<p>{product.price}€</p>
-					</div>
+					</button>
 				))}
 			</div>
 		</div>
 	);
-};
+}
 
 export default Suggestions;

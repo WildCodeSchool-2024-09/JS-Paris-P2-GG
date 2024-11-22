@@ -1,3 +1,4 @@
+import "./Recap.css";
 import React from "react";
 import "./Recap.css";
 

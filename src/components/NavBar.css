@@ -24,7 +24,7 @@ ul {
 	align-items: center;
 	padding-right: 1em;
 	gap: 1em;
-	text-decoration: none;
+	list-style-type: none;
 }
 
 nav-icons-background {
