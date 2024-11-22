@@ -55,7 +55,8 @@ function Intro({ onComplete }: IntroProps) {
 							<div className="dialog">
 								<p>
 									Bonjour, je m'appelle Lassana. <br />
-									Je suis là pour vous aider à choisir un cadeau parfait! <br />
+									Je suis là pour vous aider <br />à choisir un cadeau parfait!{" "}
+									<br />
 									On y va?
 								</p>
 								<button

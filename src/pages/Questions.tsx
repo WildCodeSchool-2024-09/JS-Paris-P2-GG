@@ -3,18 +3,18 @@ import { useEffect, useState } from "react";
 import "./Questions.css";
 
 interface QuestionsProps {
-	onComplete: () => void;
+	onComplete: (answers: string[], budget: number) => void;
 }
 
 function Questions({ onComplete }: QuestionsProps) {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+	const [selectedAnswers, setSelectedAnswers] = useState<string[]>(["", ""]);
 	const [sliderValue, setSliderValue] = useState<number>(50);
 
 	const questions = [
-		"Le cadeau est pour qui?",
-		"Quels sont ses centres d'intérêts ?",
-		"Quel est votre budget?",
+		"1/3 Le cadeau est pour qui?",
+		"2/3 Quels sont ses centres d'intérêts ?",
+		"3/3 Quel est votre budget?",
 		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux.",
 	];
 
@@ -26,42 +26,35 @@ function Questions({ onComplete }: QuestionsProps) {
 	];
 
 	const handleSelectAnswer = (answer: string) => {
-		setSelectedAnswer(answer);
+		if (currentQuestion < 2) {
+			setSelectedAnswers((prev) => {
+				const updatedAnswers = [...prev];
+				updatedAnswers[currentQuestion] = answer;
+				return updatedAnswers;
+			});
+		}
 
 		if (currentQuestion === 3 && answer === "Réveler mes désirs") {
-			onComplete();
+			onComplete(selectedAnswers, sliderValue);
 		} else {
-			setSelectedAnswer(null);
 			setCurrentQuestion((prev) => prev + 1);
 		}
 	};
 
 	return (
-		<motion.div
-			className="questions-container"
-			initial={{ y: 100, opacity: 0 }}
-			animate={{ y: 0, opacity: 1 }}
-			transition={{ duration: 4 }}
-		>
+		<motion.div className="questions-container">
 			<div className="genie-lamp">
 				<motion.img
 					src="src/assets/Lassana-removebg-final.png"
 					alt="Genie"
 					className="genie-lassana"
-					initial={{ y: 70, opacity: 50 }}
-					animate={{ y: 0, opacity: 1 }}
-					transition={{ duration: 2.5 }}
 				/>
 				<motion.img
 					src="src/assets/lampsmoke.png"
 					alt="Lamp"
 					className="lamp-complete mirror"
-					initial={{ scaleX: -1 }}
-					animate={{ scale: 1 }}
-					transition={{ duration: 1 }}
 				/>
 			</div>
-
 			<div className="question-box">
 				<p>{questions[currentQuestion]}</p>
 
@@ -70,13 +63,13 @@ function Questions({ onComplete }: QuestionsProps) {
 						<input
 							type="range"
 							min="0"
-							max="50000"
+							max="3000"
 							step="20"
 							value={sliderValue}
 							onChange={(e) => setSliderValue(Number(e.target.value))}
 							className="budget-slider"
 						/>
-						<h4>Budget: {sliderValue}€</h4>
+						<h4>{sliderValue}€</h4>
 						<motion.button
 							type="button"
 							onClick={() => setCurrentQuestion(3)}
@@ -93,15 +86,8 @@ function Questions({ onComplete }: QuestionsProps) {
 							<motion.button
 								key={answer}
 								type="button"
+								className="answer-button"
 								onClick={() => handleSelectAnswer(answer)}
-								className={`answer-button ${
-									selectedAnswer === answer ? "selected" : ""
-								}`}
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.95 }}
-								initial={{ x: -50, opacity: 0 }}
-								animate={{ x: 0, opacity: 1 }}
-								transition={{ duration: 0.3, delay: 0.2 }}
 							>
 								{answer}
 							</motion.button>

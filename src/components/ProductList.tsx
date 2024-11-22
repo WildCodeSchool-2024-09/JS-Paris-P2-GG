@@ -7,13 +7,19 @@ interface Product {
 	title: string;
 	price: number;
 	thumbnail: string;
+	category: string;
 }
 
 interface ImagesState {
 	[key: number]: string;
 }
 
-const ProductList: React.FC = () => {
+interface ProductListProps {
+	answers: string[];
+	budget: number | null;
+}
+
+const ProductList: React.FC<ProductListProps> = ({ answers, budget }) => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [images, setImages] = useState<ImagesState>({});
 
@@ -21,28 +27,38 @@ const ProductList: React.FC = () => {
 		fetch("https://dummyjson.com/products")
 			.then((res) => res.json())
 			.then((data) => {
-				setProducts(data.products.slice(0, 5));
+				const filteredProducts = data.products.filter((product: Product) => {
+					return (
+						(answers.includes(product.category) ||
+							answers.includes("Surprends moi")) &&
+						(budget ? product.price <= budget : true)
+					);
+				});
+
+				setProducts(filteredProducts.slice(0, 5));
 			});
-	}, []);
+	}, [answers, budget]);
+
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
-			const currentImage =
-				prevImages[productId] || "src\\assets\\magic-lamp.png";
+			const currentImage = prevImages[productId] || "src/assets/magic-lamp.png";
 			const newImage =
-				currentImage === "src\\assets\\magic-lamp.png"
-					? "src\\assets\\magic-lamp_yellow.png"
-					: "src\\assets\\magic-lamp.png";
+				currentImage === "src/assets/magic-lamp.png"
+					? "src/assets/magic-lamp_yellow.png"
+					: "src/assets/magic-lamp.png";
 			return {
 				...prevImages,
 				[productId]: newImage,
 			};
 		});
 	};
+
 	const handleKeyDown = (event: React.KeyboardEvent, productId: number) => {
 		if (event.key === "Enter" || event.key === " ") {
 			changeImage(productId);
 		}
 	};
+
 	return (
 		<div className="product-list">
 			{products.map((product) => (
@@ -69,7 +85,7 @@ const ProductList: React.FC = () => {
 							tabIndex={0}
 						>
 							<img
-								src={images[product.id] || "src\\assets\\magic-lamp.png"}
+								src={images[product.id] || "src/assets/magic-lamp.png"}
 								alt="magic lamp"
 								className="magic-lamp"
 							/>
@@ -80,4 +96,5 @@ const ProductList: React.FC = () => {
 		</div>
 	);
 };
+
 export default ProductList;

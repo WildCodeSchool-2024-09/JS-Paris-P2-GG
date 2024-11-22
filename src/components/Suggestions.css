@@ -26,8 +26,8 @@ h1 {
 .suggestion-card {
 	background-color: rgba(12, 99, 232, 0.9);
 	border-radius: 8px;
-	width: 180px;
-	height: 260px;
+	width: 220px;
+	height: 300px;
 	text-align: center;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	padding: 16px;
@@ -50,13 +50,14 @@ h1 {
 
 .suggestion-card p {
 	display: flex;
+	justify-content: center;
 	margin-bottom: auto;
 	width: 50px;
 	background-color: #ffc107;
 	color: #000;
 	font-weight: bolder;
 	font-size: .8rem;
-	padding: 8px 12px;
+	padding: 6px 14px;
 	border-radius: 12px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }

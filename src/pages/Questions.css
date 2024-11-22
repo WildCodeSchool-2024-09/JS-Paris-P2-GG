@@ -21,6 +21,7 @@
 
 .lamp-complete {
 	height: 450px;
+	transform: scaleX(-1);
 	width: 600px;
 	margin-top: -120px;
 	margin-left: 200px;
@@ -40,10 +41,10 @@
 	width: 600px;
 	background-position: center;
 	background-repeat: no-repeat;
-	padding: 20px;
+	padding: 45px;
 	border-radius: 10px;
 	font-family: var(--titlefont);
-	font-size: 22px;
+	font-size: 32px;
 	color: white;
 	max-width: 500px;
 	text-align: center;
@@ -101,6 +102,7 @@
 	width: 50%;
 	appearance: none;
 	height: 8px;
+
 	border-radius: 5px;
 	background: #ddd;
 	outline: none;
@@ -124,5 +126,7 @@
 
 h4 {
 	color: white;
-	font-family: var(--textfont);
+	font-family: var(--titlefont);
+	font-size: larger;
+	text-shadow: 2px 2px black,;
 }
