@@ -5,12 +5,10 @@ import lampSound from "../assets/geniesound.mp3";
 import ggSound from "../assets/gg.mp3";
 import lampImg from "../assets/justlamp.png";
 import smokeImg from "../assets/justsmoke.png";
+import { useNavigate } from "react-router-dom";
 
-interface IntroProps {
-	onComplete: () => void;
-}
-
-function Intro({ onComplete }: IntroProps) {
+function Intro() {
+	const navigate = useNavigate();
 	const [showSmoke, setShowSmoke] = useState(false);
 	const [showGenie, setShowGenie] = useState(false);
 	const [showTitle, setShowTitle] = useState(true);
@@ -29,7 +27,7 @@ function Intro({ onComplete }: IntroProps) {
 	const handleGGClick = () => {
 		const audio = new Audio(ggSound);
 		audio.play();
-		onComplete();
+		navigate("/questions");
 	};
 
 	return (

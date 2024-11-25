@@ -10,11 +10,11 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <Intro onComplete={() => {}} />,
+				element: <Intro />,
 			},
 			{
 				path: "/questions",
-				element: <Questions onComplete={() => {}} />,
+				element: <Questions />,
 			},
 			{
 				path: "/resultats",

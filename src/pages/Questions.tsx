@@ -1,12 +1,15 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import "./Questions.css";
+import { useNavigate } from "react-router-dom";
+import { useAnswers } from "../context/AnswersContext";
 
 interface QuestionsProps {
 	onComplete: (answers: string[], budget: number) => void;
 }
 
 function Questions({ onComplete }: QuestionsProps) {
+	const navigate = useNavigate();
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [selectedAnswers, setSelectedAnswers] = useState<string[]>(["", ""]);
 	const [sliderValue, setSliderValue] = useState<number>(50);
@@ -30,12 +33,13 @@ function Questions({ onComplete }: QuestionsProps) {
 			setSelectedAnswers((prev) => {
 				const updatedAnswers = [...prev];
 				updatedAnswers[currentQuestion] = answer;
+
 				return updatedAnswers;
 			});
 		}
 
 		if (currentQuestion === 3 && answer === "Réveler mes désirs") {
-			onComplete(selectedAnswers, sliderValue);
+			navigate("/resultats");
 		} else {
 			setCurrentQuestion((prev) => prev + 1);
 		}
