@@ -1,7 +1,11 @@
 import "./NavBar.css";
 import ToggleTheme from "./ToggleTheme";
+// import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+	// const navigate= useNavigate();
+
+	// const questionsLink=() => {navigate("/questions")};
 	return (
 		<nav>
 			<div nav-icons-background>
@@ -10,6 +14,8 @@ function NavBar() {
 						id="logoGG"
 						src="src\assets\LogoGG_lampe.png"
 						alt="Logo GG - Gift Generator"
+						// onClick={() => {questionsLink()}}
+						// onKeyUp={() => {questionsLink()}}
 					/>
 					<ul>
 						<li>
