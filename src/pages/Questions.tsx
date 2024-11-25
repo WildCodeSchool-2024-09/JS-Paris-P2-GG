@@ -32,13 +32,11 @@ function Questions({ onComplete }: QuestionsProps) {
 				updatedAnswers[currentQuestion] = answer;
 				return updatedAnswers;
 			});
+		} else if (currentQuestion === 3 && answer === "Réveler mes désirs") {
+			onComplete(selectedAnswers, sliderValue);
 		}
 
-		if (currentQuestion === 3 && answer === "Réveler mes désirs") {
-			onComplete(selectedAnswers, sliderValue);
-		} else {
-			setCurrentQuestion((prev) => prev + 1);
-		}
+		setCurrentQuestion((prev) => prev + 1);
 	};
 
 	return (
@@ -72,7 +70,14 @@ function Questions({ onComplete }: QuestionsProps) {
 						<h4>{sliderValue}€</h4>
 						<motion.button
 							type="button"
-							onClick={() => setCurrentQuestion(3)}
+							onClick={() => {
+								setSelectedAnswers((prev) => {
+									const updatedAnswers = [...prev];
+									updatedAnswers[currentQuestion] = `${sliderValue}€`;
+									return updatedAnswers;
+								});
+								setCurrentQuestion(3);
+							}}
 							className="answer-button"
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.95 }}

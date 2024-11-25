@@ -10,7 +10,6 @@ import Footer from "./components/footer";
 import { useSelectedProduct } from "./context/SelectedProductContext";
 import Intro from "./pages/Intro";
 import Questions from "./pages/Questions";
-import type Product from "./type/Product";
 
 function App() {
 	const [showIntro, setShowIntro] = useState(true);

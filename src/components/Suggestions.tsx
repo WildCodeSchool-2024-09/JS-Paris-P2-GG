@@ -152,17 +152,20 @@ function Suggestions({ budget, answers }: SuggestionsProps) {
 					});
 				}
 
-				setProducts(filteredProducts.slice(10, 14));
+				const shuffledProducts = shuffleArray(filteredProducts);
+
+				setProducts(shuffledProducts.slice(6, 10));
 			})
 			.catch((error) => console.error("Error fetching products:", error));
 	}, [budget, answers]);
 
+	function shuffleArray(array: Product[]) {
+		return array.sort(() => Math.random() - 0.5);
+	}
+
 	return (
 		<div className="suggestions">
-			<h1>
-				Voici des merveilles, à peine plus coûteuses, mais qui pourraient
-				enchanter tes souhaits
-			</h1>
+			<h1>Un autre tour de magie pour t'offrir encore plus de choix !</h1>
 
 			<div className="suggestions-container">
 				{products.map((product) => (

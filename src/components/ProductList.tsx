@@ -152,16 +152,25 @@ function ProductList({ budget, answers }: ProductListProps) {
 					});
 				}
 
-				setProducts(filteredProducts.slice(0, 10));
+				const shuffledProducts = shuffleArray(filteredProducts);
+
+				setProducts(shuffledProducts.slice(0, 5));
 			})
 			.catch((error) => console.error("Error fetching products:", error));
 	}, [budget, answers]);
+
+	function shuffleArray(array: Product[]) {
+		return array.sort(() => Math.random() - 0.5);
+	}
 
 	return (
 		<div>
 			<div className="cards">
 				{products.length === 0 ? (
-					<p>No products found matching your criteria.</p>
+					<p>
+						Hélas, mes talents de génie ne suffisent pas cette fois-ci. Aucun
+						produit ne correspond à vos désirs.
+					</p>
 				) : (
 					products.map((product) => (
 						<button
