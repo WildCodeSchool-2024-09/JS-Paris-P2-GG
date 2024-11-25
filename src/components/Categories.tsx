@@ -1,5 +1,6 @@
-import { useState } from "react";
+import type React from "react";
 import "./Categories.css";
+import { useEffect, useState } from "react";
 
 interface Product {
 	id: number;
@@ -8,67 +9,75 @@ interface Product {
 	thumbnail: string;
 }
 
-interface Category {
-	name: string;
-}
-
 interface CategoryData {
 	name: string;
 	products: Product[];
 }
 
-function Categories() {
+// Traductions des catégories
+const categoryTranslations: { [key: string]: string } = {
+	smartphones: "Smartphones",
+	laptops: "Ordinateurs Portables",
+	fragrances: "Parfums",
+	"skin-care": "Soins de la peau",
+	"home-decoration": "Décoration",
+	beauty: "Beauté",
+	furniture: "Meubles",
+	"kitchen-accessories": "Accessoires de cuisine",
+	"mens-shirts": "Hauts homme",
+	"mens-shoes": "Chaussures homme",
+	"mens-watches": "Montres homme",
+	"mobile-accessories": "Accessoire de téléphone",
+	"sports-accessories": "Accessoires de sport",
+	sunglasses: "Lunettes de soleil",
+	tablets: "Tablettes",
+	tops: "Hauts femmes",
+	"womens-bags": "Sacs femme",
+	"womens-dresses": "Robes femme",
+	"womens-jewellery": "Bijoux femme",
+	"womens-shoes": "Chaussures femmes",
+	"womens-watches": "Montres femme",
+};
+
+const translateCategory = (category: string): string => {
+	return categoryTranslations[category] || category;
+};
+
+const Categories: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [categories, setCategories] = useState<Category[]>([]);
+	const [categories, setCategories] = useState<string[]>([]);
 	const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
 
-	const toggleAccordion = () => {
-		setIsOpen(!isOpen);
-
-		if (!isOpen) {
-			fetch("https://dummyjson.com/products/categories")
-				.then((res) => res.json())
-				.then((data) => {
-					const filteredCategories = data.filter(
-						(category: Category) =>
-							category.name !== "Groceries" &&
-							category.name !== "Motorcycle" &&
-							category.name !== "Vehicle",
-					);
-					setCategories(filteredCategories);
-				});
-		} else {
-			setCategoryData(null);
-		}
-	};
+	useEffect(() => {
+		fetch("https://dummyjson.com/products/category-list")
+			.then((res) => res.json())
+			.then((data) => {
+				const filteredCategories = data.filter(
+					(category: string) =>
+						category !== "groceries" &&
+						category !== "motorcycle" &&
+						category !== "vehicle",
+				);
+				setCategories(filteredCategories);
+			})
+			.catch((error) =>
+				console.error("Erreur de récupération des catégories :", error),
+			);
+	}, []);
 
 	const fetchCategoryData = (category: string) => {
-		const slugifiedCategory = category
-			.trim()
-			.toLowerCase()
-			.replace(/\s+/g, "-");
-
-		const apiUrl = `https://dummyjson.com/products/category/${slugifiedCategory}`;
-
+		const apiUrl = `https://dummyjson.com/products/category/${category}`;
 		fetch(apiUrl)
 			.then((res) => res.json())
 			.then((data) => {
-				if (data.products) {
-					setCategoryData({
-						name: category,
-						products: data.products,
-					});
-				} else {
-					console.error(`No products found for category: ${category}`);
-				}
-			})
-			.catch((error) => {
-				console.error("Error fetching category data:", error);
 				setCategoryData({
 					name: category,
-					products: [],
+					products: data.products,
 				});
-			});
+			})
+			.catch((error) =>
+				console.error("Erreur lors de la récupération des produits :", error),
+			);
 	};
 
 	return (
@@ -77,25 +86,41 @@ function Categories() {
 				Mes propositions ne t’enchantent pas ? <br /> Peut-être qu’un petit tour
 				par catégorie te révélera un vœu à ta mesure !
 			</p>
-			<button className="accordion" type="button" onClick={toggleAccordion}>
-				Categories
-			</button>
+
+			<div className="menu">
+				<select
+					className="category-menu"
+					onChange={(e) => fetchCategoryData(e.target.value)}
+				>
+					<option value="">Sélectionner une catégorie</option>
+					{categories.length > 0 ? (
+						categories.map((category) => (
+							<option key={category} value={category}>
+								{translateCategory(category)}
+							</option>
+						))
+					) : (
+						<option>Chargement des catégories...</option>
+					)}
+				</select>
+			</div>
+
 			{isOpen && (
 				<div className="accordion-content">
 					{categories.length > 0 ? (
 						<ul>
 							{categories.map((category) => (
 								<li
-									key={category.name}
+									key={category}
 									className="category-item"
-									onClick={() => fetchCategoryData(category.name)}
+									onClick={() => fetchCategoryData(category)}
 									onKeyUp={(e) => {
 										if (e.key === "Enter" || e.key === " ") {
-											fetchCategoryData(category.name);
+											fetchCategoryData(category);
 										}
 									}}
 								>
-									{category.name}
+									{translateCategory(category)}
 								</li>
 							))}
 						</ul>
@@ -105,15 +130,17 @@ function Categories() {
 				</div>
 			)}
 
-			{isOpen && categoryData && (
+			{categoryData && (
 				<div className="category-products">
-					<h3>Products in {categoryData.name} category:</h3>
+					<h3>
+						Produits dans la catégorie {translateCategory(categoryData.name)} :
+					</h3>
 					<div className="products-cat">
 						{categoryData.products.map((product: Product) => (
 							<div key={product.id} className="suggestion-card">
 								<img src={product.thumbnail} alt={product.title} />
 								<h4>{product.title}</h4>
-								<p>{product.price.toFixed(2)}€</p>
+								<p>€{product.price.toFixed(2)}</p>
 							</div>
 						))}
 					</div>
@@ -121,6 +148,6 @@ function Categories() {
 			)}
 		</div>
 	);
-}
+};
 
 export default Categories;
