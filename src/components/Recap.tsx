@@ -1,7 +1,13 @@
+import "./Recap.css";
 import React from "react";
 import "./Recap.css";
 
-function Recap() {
+interface RecapProps {
+	answers: string[];
+	budget: number | null;
+}
+
+function Recap({ answers, budget }: RecapProps) {
 	return (
 		<div className="recap-container">
 			<img
@@ -11,24 +17,27 @@ function Recap() {
 			/>
 			<div className="recap-box">
 				<h2>Récapitulatif</h2>
+
 				<div className="recap-answer">
-					<p>Femme</p>
+					<p>{answers[0] || "Indéfini"}</p>
 					<img
 						src="src/assets/narguile.png"
 						alt="narguilé"
 						className="narguile-puces"
 					/>
 				</div>
+
 				<div className="recap-answer">
-					<p>Proche</p>
+					<p>{answers[1] || "Indéfini"}</p>
 					<img
 						src="src/assets/narguile.png"
 						alt="narguilé"
 						className="narguile-puces"
 					/>
 				</div>
+
 				<div className="recap-answer">
-					<p>10€ à 1500€</p>
+					<p>{budget ? `${budget}€` : "Indéfini"}</p>
 					<img
 						src="src/assets/narguile.png"
 						alt="narguilé"

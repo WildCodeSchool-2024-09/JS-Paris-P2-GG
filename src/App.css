@@ -4,12 +4,13 @@
 	margin: 0 auto;
 	padding: 0rem;
 	text-align: center;
-	--titlefont: "Inika", sans-serif;
+	--titlefont: "Jura", sans-serif;
 	--textfont: "Metrophobic", sans-serif;
 }
 
 body {
 	background-image: url("src/assets/desert-night-8807846-transformed.png");
+	min-height: 100vh;
 	background-size: cover;
 	margin: 0;
 	text-align: center;

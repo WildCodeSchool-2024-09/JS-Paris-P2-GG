@@ -7,11 +7,12 @@
 }
 
 .above-button-text {
-	font-size: 18px;
+	font-size: 22px;
 	margin-bottom: 20px;
 	color: #ffffff;
 	font-weight: bold;
 	line-height: 1.5;
+	filter: drop-shadow(2px 2px 4px black);
 }
 
 .accordion {

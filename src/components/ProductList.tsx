@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import "./Cards.css";
-interface Product {
-	id: number;
-	title: string;
-	price: number;
-	thumbnail: string;
-}
+
+import "./ProductList.css";
+
+import { useSelectedProduct } from "../context/SelectedProductContext";
+
+import type Product from "../type/Product";
 interface ImagesState {
 	[key: number]: string;
 }
-const Cards: React.FC = () => {
+function ProductList() {
 	const [products, setProducts] = useState<Product[]>([]);
+	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
+
 	useEffect(() => {
 		fetch("https://dummyjson.com/products")
 			.then((res) => res.json())
@@ -29,7 +30,7 @@ const Cards: React.FC = () => {
 					: "src\\assets\\magic-lamp.png";
 			return {
 				...prevImages,
-				[productId]: newImage, //mettre à jour la clé
+				[productId]: newImage,
 			};
 		});
 	};
@@ -39,23 +40,18 @@ const Cards: React.FC = () => {
 		}
 	};
 	return (
-		<div className="cards">
-			{products.map((product) => (
-				<div key={product.id} className="product-card">
-					<img
-						src={product.thumbnail}
-						alt={product.title}
-						className="product-image"
-					/>
-					<div className="text-and-wishlist">
-						<div className="title-product">
-							<div>
-								<h4>{product.title}</h4>
-							</div>
-							<div className="price">
-								<p>€{product.price}</p>
-							</div>
-						</div>
+		<div>
+			<div className="cards">
+				{products.map((product) => (
+					<button
+						type="button"
+						key={product.id}
+						className="product-card"
+						onClick={() => setSelectedProduct(product)}
+					>
+						<img src={product.thumbnail} alt={product.title} />
+						<h4>{product.title}</h4>
+						<p>{product.price} €</p>
 						<button
 							type="button"
 							className="wishlist-button"
@@ -69,10 +65,11 @@ const Cards: React.FC = () => {
 								className="magic-lamp"
 							/>
 						</button>
-					</div>
-				</div>
-			))}
+					</button>
+				))}
+			</div>
 		</div>
 	);
-};
-export default Cards;
+}
+
+export default ProductList;
