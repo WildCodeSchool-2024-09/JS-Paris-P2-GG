@@ -20,7 +20,7 @@ function Questions({ onComplete }: QuestionsProps) {
 
 	const answers = [
 		["Femme", "Homme", "Indifférent"],
-		["Beauté", "Maison", "Mode", "High-tech", "Surprends moi"],
+		["Beauté", "Maison", "Mode", "Multimedia", "Surprends moi"],
 		[],
 		["Réveler mes désirs"],
 	];
@@ -62,9 +62,9 @@ function Questions({ onComplete }: QuestionsProps) {
 					<div className="slider-container">
 						<input
 							type="range"
-							min="0"
+							min="5"
 							max="3000"
-							step="20"
+							step="10"
 							value={sliderValue}
 							onChange={(e) => setSliderValue(Number(e.target.value))}
 							className="budget-slider"
