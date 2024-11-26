@@ -75,11 +75,11 @@ function Categories() {
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
 			const currentImage =
-				prevImages[productId] || "src\\assets\\magic-lamp.png";
+				prevImages[productId] || "src/assets/magic-lamp-yellowborder.png";
 			const newImage =
-				currentImage === "src\\assets\\magic-lamp.png"
-					? "src\\assets\\magic-lamp_yellow.png"
-					: "src\\assets\\magic-lamp.png";
+				currentImage === "src/assets/magic-lamp-yellowborder.png"
+					? "src/assets/magic-lamp_yellow.png"
+					: "src/assets/magic-lamp-yellowborder.png";
 			return {
 				...prevImages,
 				[productId]: newImage,
@@ -144,7 +144,10 @@ function Categories() {
 										tabIndex={0}
 									>
 										<img
-											src={images[product.id] || "src\\assets\\magic-lamp.png"}
+											src={
+												images[product.id] ||
+												"src/assets/magic-lamp-yellowborder.png"
+											}
 											alt="magic lamp"
 											className="magic-lamp"
 										/>
