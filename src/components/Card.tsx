@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import "./ProductList.css";
+import "./Card.css";
 
 import { useSelectedProduct } from "../context/SelectedProductContext";
 
 import type Product from "../type/Product";
 
 interface CardProps {
-	product: Product | null;
+	product: Product;
 }
 
 interface ImagesState {
@@ -40,7 +40,11 @@ function Card({ product }: CardProps) {
 
 	return (
 		<div className="cards">
-			<img src={product.thumbnail} alt={product.title} />
+			<img
+				className="product-image"
+				src={product.thumbnail}
+				alt={product.title}
+			/>
 			<h4 className="product-name">{product.title}</h4>
 			<div className="price-wish-block">
 				<p className="product-price">{product.price} €</p>
