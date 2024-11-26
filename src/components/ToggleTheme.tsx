@@ -7,7 +7,7 @@ const ToggleTheme = () => {
 		setDarkMode(!darkMode);
 		document.body.style.backgroundImage = darkMode
 			? "url('src/assets/backgroundday.jpg')"
-			: "url('src/assets/desert-night-8807846-transformed.png')"
+			: "url('src/assets/desert-night-8807846-transformed.png')";
 		document.body.style.color = darkMode ? "#fff" : "#000";
 	};
 
