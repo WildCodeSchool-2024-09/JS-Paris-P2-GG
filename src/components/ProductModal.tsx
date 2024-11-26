@@ -1,6 +1,6 @@
 import type Product from "../type/Product";
 import "./ProductModal.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelectedProduct } from "../context/SelectedProductContext";
 
 interface ProductModalProps {
