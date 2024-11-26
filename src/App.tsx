@@ -1,17 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import Intro from "./pages/Intro";
-import Questions from "./pages/Questions";
-import ProductList from "./components/ProductList";
 import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
+import ProductList from "./components/ProductList";
 import ProductModal from "./components/ProductModal";
 import Recap from "./components/Recap";
 import Suggestions from "./components/Suggestions";
 import Footer from "./components/footer";
-
-import type Product from "./type/Product";
 import { useSelectedProduct } from "./context/SelectedProductContext";
+import Intro from "./pages/Intro";
+import Questions from "./pages/Questions";
 
 function App() {
 	const [showIntro, setShowIntro] = useState(true);
@@ -50,7 +48,7 @@ function App() {
 				<>
 					<Recap answers={answers} budget={budget} />
 					<ProductList answers={answers} budget={budget} />
-					<Suggestions />
+					<Suggestions budget={budget} answers={answers} />
 					{selectedProduct ? <ProductModal product={selectedProduct} /> : <></>}
 					<Categories />
 				</>

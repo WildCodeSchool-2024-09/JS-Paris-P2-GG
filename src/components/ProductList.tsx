@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-
 import "./ProductList.css";
 
 import type Product from "../type/Product";
 import Card from "./Card";
 
-function ProductList() {
+function ProductList({ budget, answers }: ProductListProps) {
 	const [products, setProducts] = useState<Product[]>([]);
 
 	useEffect(() => {
-		fetch("https://dummyjson.com/products")
+		const limit = 194;
+		const skip = 0;
+
+		fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setProducts(data.products.slice(0, 5));
