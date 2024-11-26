@@ -7,32 +7,166 @@ interface ImagesState {
 	[key: number]: string;
 }
 
-function Suggestions() {
+interface SuggestionsProps {
+	budget: number | null;
+	answers: string[];
+}
+
+function Suggestions({ budget, answers }: SuggestionsProps) {
 	const [products, setProducts] = useState<Product[]>([]);
-	const excludedIds = [167];
 	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
 
+	type Gender = "Homme" | "Femme" | "Indifférent";
+	type Interest = "Beauté" | "Maison" | "Mode" | "Multimedia" | "Surprends moi";
+
+	const categoryMapping: Record<Gender, string[]> = {
+		Homme: [
+			"mens-shoes",
+			"mens-shirts",
+			"mens-watches",
+			"sunglasses",
+			"home-decoration",
+			"kitchen-accessories",
+			"laptops",
+			"mobile-accessories",
+			"smartphones",
+			"sports-accessories",
+			"tablets",
+		],
+		Femme: [
+			"beauty",
+			"fragrances",
+			"skin-care",
+			"sunglasses",
+			"tops",
+			"womens-bags",
+			"womens-dresses",
+			"womens-jewellery",
+			"womens-shoes",
+			"womens-watches",
+			"home-decoration",
+			"kitchen-accessories",
+			"laptops",
+			"mobile-accessories",
+			"smartphones",
+			"tablets",
+		],
+		Indifférent: [
+			"beauty",
+			"fragrances",
+			"skin-care",
+			"sunglasses",
+			"tops",
+			"womens-bags",
+			"womens-dresses",
+			"womens-jewellery",
+			"womens-shoes",
+			"womens-watches",
+			"mens-shoes",
+			"mens-shirts",
+			"mens-watches",
+			"sports-accessories",
+			"home-decoration",
+			"kitchen-accessories",
+			"laptops",
+			"mobile-accessories",
+			"smartphones",
+			"tablets",
+		],
+	};
+
+	const interestMapping: Record<Interest, string[]> = {
+		Beauté: ["beauty", "fragrances", "skin-care"],
+		Mode: [
+			"mens-shoes",
+			"mens-shirts",
+			"mens-watches",
+			"sunglasses",
+			"tops",
+			"womens-bags",
+			"womens-dresses",
+			"womens-jewellery",
+			"womens-shoes",
+			"womens-watches",
+		],
+		Multimedia: [
+			"laptops",
+			"mobile-accessories",
+			"smartphones",
+			"sports-accessories",
+			"tablets",
+		],
+		Maison: ["furniture", "home-decoration", "kitchen-accessories"],
+		"Surprends moi": [],
+	};
+
 	useEffect(() => {
-		fetch("https://dummyjson.com/products?sortBy=title&order=asc")
+		const limit = 194;
+		const skip = 0;
+
+		fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
 			.then((res) => res.json())
 			.then((data) => {
-				const filteredProducts = data.products.filter(
-					(product: Product) => !excludedIds.includes(product.id),
-				);
+				let filteredProducts = data.products;
 
-				if (filteredProducts.length < 4) {
-					const additionalProduct = data.products.find(
-						(product: Product) => !excludedIds.includes(product.id),
+				if (budget !== null) {
+					filteredProducts = filteredProducts.filter(
+						(product: Product) => product.price <= budget,
 					);
-					if (additionalProduct) {
-						filteredProducts.push(additionalProduct);
+				}
+
+				if (
+					answers[0] &&
+					["Homme", "Femme", "Indifférent"].includes(answers[0])
+				) {
+					const selectedCategories =
+						categoryMapping[answers[0] as Gender] || [];
+					filteredProducts = filteredProducts.filter((product: Product) => {
+						const productCategory =
+							product.category?.trim().toLowerCase() || "";
+						return selectedCategories.some(
+							(category) => category.toLowerCase() === productCategory,
+						);
+					});
+				}
+
+				if (answers[1] && interestMapping[answers[1] as Interest]) {
+					const selectedInterestCategories =
+						interestMapping[answers[1] as Interest] || [];
+					if (selectedInterestCategories.length > 0) {
+						filteredProducts = filteredProducts.filter((product: Product) => {
+							const productCategory =
+								product.category?.trim().toLowerCase() || "";
+							return selectedInterestCategories.some(
+								(category) => category.toLowerCase() === productCategory,
+							);
+						});
 					}
 				}
 
-				setProducts(filteredProducts.slice(0, 4));
-			});
-	}, []);
+				if (answers[1] === "Surprends moi") {
+					filteredProducts = filteredProducts.filter((product: Product) => {
+						const productCategory =
+							product.category?.trim().toLowerCase() || "";
+						const isGenderMatched =
+							categoryMapping[answers[0] as Gender]?.some(
+								(category) => category.toLowerCase() === productCategory,
+							) || false;
+						return isGenderMatched;
+					});
+				}
+
+				const shuffledProducts = shuffleArray(filteredProducts);
+
+				setProducts(shuffledProducts.slice(6, 10));
+			})
+			.catch((error) => console.error("Error fetching products:", error));
+	}, [budget, answers]);
+
+	function shuffleArray(array: Product[]) {
+		return array.sort(() => Math.random() - 0.5);
+	}
 
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
@@ -56,10 +190,7 @@ function Suggestions() {
 
 	return (
 		<div className="suggestions">
-			<h1>
-				Voici des merveilles, à peine plus coûteuses, mais qui pourraient
-				enchanter tes souhaits
-			</h1>
+			<h1>Un autre tour de magie pour t'offrir encore plus de choix !</h1>
 
 			<div className="suggestions-container">
 				{products.map((product) => (
