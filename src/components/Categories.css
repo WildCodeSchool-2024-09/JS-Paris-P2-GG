@@ -16,17 +16,28 @@
 }
 
 .category-menu {
-	appearance: none;
+	background-image: url("src/assets/buttoncategories.png");
+	background-color: transparent;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+	border: none;
 	display: flex;
+	justify-content: center;
 	text-align: center;
 	color: white;
+	text-shadow: 2px 2px black;
 	font-family: var(--titlefont);
 	width: 450px;
-	height: 150px;
-	font-size: 28px;
-	background-image: url("src/assets/answers.png");
-	background-size: cover;
-	background-position: center;
+	height: 80px;
+	font-size: 22px;
+	margin: 2rem 0 2rem 0;
+	cursor: pointer;
+	appearance: none;
+}
+
+.category-menu option {
+	background-color: #891f61;
 }
 
 .category-item {

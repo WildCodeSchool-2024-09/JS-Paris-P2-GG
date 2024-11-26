@@ -17,7 +17,7 @@ interface CategoryData {
 // Traductions des catégories
 const categoryTranslations: { [key: string]: string } = {
 	smartphones: "Smartphones",
-	laptops: "Ordinateurs Portables",
+	laptops: "Ordinateurs portables",
 	fragrances: "Parfums",
 	"skin-care": "Soins de la peau",
 	"home-decoration": "Décoration",
@@ -27,15 +27,15 @@ const categoryTranslations: { [key: string]: string } = {
 	"mens-shirts": "Hauts homme",
 	"mens-shoes": "Chaussures homme",
 	"mens-watches": "Montres homme",
-	"mobile-accessories": "Accessoire de téléphone",
-	"sports-accessories": "Accessoires de sport",
+	"mobile-accessories": "Accessoires téléphone",
+	"sports-accessories": "Accessoires sport",
 	sunglasses: "Lunettes de soleil",
 	tablets: "Tablettes",
-	tops: "Hauts femmes",
+	tops: "Hauts femme",
 	"womens-bags": "Sacs femme",
 	"womens-dresses": "Robes femme",
 	"womens-jewellery": "Bijoux femme",
-	"womens-shoes": "Chaussures femmes",
+	"womens-shoes": "Chaussures femme",
 	"womens-watches": "Montres femme",
 };
 
@@ -104,31 +104,6 @@ const Categories: React.FC = () => {
 					)}
 				</select>
 			</div>
-
-			{isOpen && (
-				<div className="accordion-content">
-					{categories.length > 0 ? (
-						<ul>
-							{categories.map((category) => (
-								<li
-									key={category}
-									className="category-item"
-									onClick={() => fetchCategoryData(category)}
-									onKeyUp={(e) => {
-										if (e.key === "Enter" || e.key === " ") {
-											fetchCategoryData(category);
-										}
-									}}
-								>
-									{translateCategory(category)}
-								</li>
-							))}
-						</ul>
-					) : (
-						<p>Loading categories...</p>
-					)}
-				</div>
-			)}
 
 			{categoryData && (
 				<div className="category-products">
