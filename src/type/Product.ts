@@ -5,4 +5,5 @@ export default interface Product {
 	thumbnail: string;
 	category: string;
 	slug?: string;
+	description: string;
 }
