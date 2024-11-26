@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { AnswersProvider } from "./context/AnswersContext"; // Importe AnswersProvider
+import { AnswersProvider } from "./context/AnswersContext";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/footer";

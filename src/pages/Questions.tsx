@@ -23,7 +23,7 @@ function Questions({ onComplete }: QuestionsProps) {
 
 	const answers = [
 		["Femme", "Homme", "Indifférent"],
-		["Beauté", "Maison", "Mode", "High-tech", "Surprends moi"],
+		["Beauté", "Maison", "Mode", "Multimedia", "Surprends moi"],
 		[],
 		["Réveler mes désirs"],
 	];
@@ -36,9 +36,7 @@ function Questions({ onComplete }: QuestionsProps) {
 
 				return updatedAnswers;
 			});
-		}
-
-		if (currentQuestion === 3 && answer === "Réveler mes désirs") {
+		} else if (currentQuestion === 3 && answer === "Réveler mes désirs") {
 			navigate("/resultats");
 		} else {
 			setCurrentQuestion((prev) => prev + 1);
@@ -67,9 +65,9 @@ function Questions({ onComplete }: QuestionsProps) {
 						<input
 							title="budget"
 							type="range"
-							min="0"
+							min="5"
 							max="3000"
-							step="20"
+							step="10"
 							value={sliderValue}
 							onChange={(e) => setSliderValue(Number(e.target.value))}
 							className="budget-slider"
@@ -77,7 +75,14 @@ function Questions({ onComplete }: QuestionsProps) {
 						<h4>{sliderValue}€</h4>
 						<motion.button
 							type="button"
-							onClick={() => setCurrentQuestion(3)}
+							onClick={() => {
+								setSelectedAnswers((prev) => {
+									const updatedAnswers = [...prev];
+									updatedAnswers[currentQuestion] = `${sliderValue}€`;
+									return updatedAnswers;
+								});
+								setCurrentQuestion(3);
+							}}
 							className="answer-button"
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.95 }}

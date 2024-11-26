@@ -5,7 +5,7 @@ import { SelectedProductProvider } from "./context/SelectedProductContext.tsx";
 import Root from "./router";
 import { AnswersProvider } from "./context/AnswersContext.tsx";
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("root") || document.body).render(
 	<StrictMode>
 		<SelectedProductProvider>
 			<AnswersProvider>
