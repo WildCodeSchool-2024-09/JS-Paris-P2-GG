@@ -6,11 +6,6 @@
 	padding: 20px;
 }
 
-.cards p {
-	color: white;
-	font-size: larger;
-}
-
 .product-card {
 	background-color: rgba(12, 99, 232, 0.9);
 	border-radius: 8px;
