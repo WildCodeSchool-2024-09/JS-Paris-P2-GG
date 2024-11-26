@@ -3,8 +3,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { SelectedProductProvider } from "./context/SelectedProductContext.tsx";
 
-// biome-ignore lint/style/noNonNullAssertion: <explanation>
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("root") || document.body).render(
 	<SelectedProductProvider>
 		<App />
 	</SelectedProductProvider>,
