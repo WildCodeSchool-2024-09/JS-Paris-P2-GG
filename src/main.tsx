@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { SelectedProductProvider } from "./context/SelectedProductContext.tsx";
 import Root from "./router";
+import { AnswersProvider } from "./context/AnswersContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<SelectedProductProvider>
-			<Root />
+			<AnswersProvider>
+				<Root />
+			</AnswersProvider>
 		</SelectedProductProvider>
 	</StrictMode>,
 );
