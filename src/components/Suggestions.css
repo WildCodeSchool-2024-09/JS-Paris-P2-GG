@@ -27,7 +27,7 @@ h1 {
 	background-color: rgba(12, 99, 232, 0.9);
 	border-radius: 8px;
 	width: 220px;
-	height: 300px;
+	height: 350px;
 	text-align: center;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 	padding: 16px;
@@ -46,14 +46,14 @@ h1 {
 	font-size: 1rem;
 	margin: 0;
 	color: white;
-	font-family: var(--textfont);
+	font-family: var(--titlefont);
 }
 
-.suggestion-card p {
+.product-price {
 	display: flex;
 	justify-content: center;
 	margin-bottom: auto;
-	width: 50px;
+	width: 100px;
 	background-color: #ffc107;
 	color: #000;
 	font-weight: bolder;
@@ -61,6 +61,21 @@ h1 {
 	padding: 6px 14px;
 	border-radius: 12px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.wishlist-button {
+	background: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	cursor: pointer;
+	height: 3rem;
+}
+
+.wishlist-button img {
+	background: none;
+	height: 3rem;
 }
 
 .above-button-text {
