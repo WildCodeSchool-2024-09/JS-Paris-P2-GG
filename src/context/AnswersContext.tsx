@@ -14,7 +14,7 @@ export const AnswersProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
 	const [answers, setAnswers] = useState<string[]>([]);
-	const [budget, setBudget] = useState<number | null>(null);
+	const [budget, setBudget] = useState<number | null>(50);
 
 	return (
 		<AnswersContext.Provider value={{ answers, budget, setAnswers, setBudget }}>

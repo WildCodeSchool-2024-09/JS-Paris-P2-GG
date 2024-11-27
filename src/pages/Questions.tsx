@@ -7,8 +7,8 @@ import { useAnswers } from "../context/AnswersContext";
 function Questions() {
 	const navigate = useNavigate();
 	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [selectedAnswers, setSelectedAnswers] = useState<string[]>(["", ""]);
-	const [sliderValue, setSliderValue] = useState<number>(50);
+
+	const { answers, budget, setAnswers, setBudget } = useAnswers();
 
 	const questions = [
 		"1/3 Le cadeau est pour qui?",
@@ -17,7 +17,7 @@ function Questions() {
 		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux.",
 	];
 
-	const answers = [
+	const listAnswers = [
 		["Femme", "Homme", "Indifférent"],
 		["Beauté", "Maison", "Mode", "Multimedia", "Surprends moi"],
 		[],
@@ -26,7 +26,7 @@ function Questions() {
 
 	const handleSelectAnswer = (answer: string) => {
 		if (currentQuestion < 2) {
-			setSelectedAnswers((prev) => {
+			setAnswers((prev) => {
 				const updatedAnswers = [...prev];
 				updatedAnswers[currentQuestion] = answer;
 
@@ -63,17 +63,17 @@ function Questions() {
 							min="5"
 							max="3000"
 							step="10"
-							value={sliderValue}
-							onChange={(e) => setSliderValue(Number(e.target.value))}
+							value={budget}
+							onChange={(e) => setBudget(Number(e.target.value))}
 							className="budget-slider"
 						/>
-						<h4>{sliderValue}€</h4>
+						<h4>{budget}€</h4>
 						<motion.button
 							type="button"
 							onClick={() => {
-								setSelectedAnswers((prev) => {
+								setAnswers((prev) => {
 									const updatedAnswers = [...prev];
-									updatedAnswers[currentQuestion] = `${sliderValue}€`;
+									updatedAnswers[currentQuestion] = `${budget}€`;
 									return updatedAnswers;
 								});
 								setCurrentQuestion(3);
@@ -85,9 +85,9 @@ function Questions() {
 							Je valide
 						</motion.button>
 					</div>
-				) : answers[currentQuestion]?.length > 0 ? (
+				) : listAnswers[currentQuestion]?.length > 0 ? (
 					<div className="answer-options">
-						{answers[currentQuestion].map((answer) => (
+						{listAnswers[currentQuestion].map((answer) => (
 							<motion.button
 								key={answer}
 								type="button"

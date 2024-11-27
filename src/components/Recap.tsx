@@ -5,6 +5,7 @@ import { useAnswers } from "../context/AnswersContext";
 
 function Recap() {
 	const { answers, budget } = useAnswers();
+
 	return (
 		<div className="recap-container">
 			<img
