@@ -32,7 +32,7 @@ function App() {
 		setShowQuestions(false);
 	};
 
-	const { selectedProduct, setSelectedProduct } = useSelectedProduct();
+	const { selectedProduct } = useSelectedProduct();
 	return (
 		<>
 			<NavBar />

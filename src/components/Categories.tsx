@@ -1,11 +1,11 @@
 import type React from "react";
 import "./Categories.css";
 import { useEffect, useState } from "react";
-import { useSelectedProduct } from "../context/SelectedProductContext";
 import type Product from "../type/Product";
+import Card from "./Card";
 
-interface ImagesState {
-	[key: number]: string;
+interface Category {
+	name: string;
 }
 
 interface CategoryData {
@@ -44,8 +44,6 @@ const translateCategory = (category: string): string => {
 const Categories: React.FC = () => {
 	const [categories, setCategories] = useState<string[]>([]);
 	const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
-	const { setSelectedProduct } = useSelectedProduct();
-	const [images, setImages] = useState<ImagesState>({});
 
 	useEffect(() => {
 		fetch("https://dummyjson.com/products/category-list")
@@ -77,26 +75,6 @@ const Categories: React.FC = () => {
 			.catch((error) =>
 				console.error("Erreur lors de la récupération des produits :", error),
 			);
-	};
-
-	const changeImage = (productId: number) => {
-		setImages((prevImages) => {
-			const currentImage =
-				prevImages[productId] || "src/assets/magic-lamp-yellowborder.png";
-			const newImage =
-				currentImage === "src/assets/magic-lamp-yellowborder.png"
-					? "src/assets/magic-lamp_yellow.png"
-					: "src/assets/magic-lamp-yellowborder.png";
-			return {
-				...prevImages,
-				[productId]: newImage,
-			};
-		});
-	};
-	const handleKeyDown = (event: React.KeyboardEvent, productId: number) => {
-		if (event.key === "Enter" || event.key === " ") {
-			changeImage(productId);
-		}
 	};
 
 	return (
@@ -131,35 +109,8 @@ const Categories: React.FC = () => {
 					</h3>
 					<div className="products-cat">
 						{categoryData.products.map((product: Product) => (
-							<div key={product.id} className="suggestion-card">
-								<img src={product.thumbnail} alt={product.title} />
-								<h4>{product.title}</h4>
-								<div className="price-wish-block">
-									<p className="product-price">{product.price.toFixed(2)}€</p>
-									<button
-										type="button"
-										className="wishlist-button"
-										onClick={() => changeImage(product.id)}
-										onKeyDown={(event) => handleKeyDown(event, product.id)}
-										tabIndex={0}
-									>
-										<img
-											src={
-												images[product.id] ||
-												"src/assets/magic-lamp-yellowborder.png"
-											}
-											alt="magic lamp"
-											className="magic-lamp"
-										/>
-									</button>
-								</div>
-								<button
-									type="button"
-									className="modal-button"
-									onClick={() => setSelectedProduct(product)}
-								>
-									<p className="button-text">Plus de détail</p>
-								</button>
+							<div key={product.id} className="category-card">
+								<Card product={product} />
 							</div>
 						))}
 					</div>
