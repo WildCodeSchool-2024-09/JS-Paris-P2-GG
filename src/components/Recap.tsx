@@ -1,13 +1,10 @@
 import "./Recap.css";
 import React from "react";
 import "./Recap.css";
+import { useAnswers } from "../context/AnswersContext";
 
-interface RecapProps {
-	answers: string[];
-	budget: number | null;
-}
-
-function Recap({ answers, budget }: RecapProps) {
+function Recap() {
+	const { answers, budget } = useAnswers();
 	return (
 		<div className="recap-container">
 			<img

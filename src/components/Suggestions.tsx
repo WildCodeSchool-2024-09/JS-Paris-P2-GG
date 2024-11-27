@@ -4,14 +4,11 @@ import "./Suggestions.css";
 import type Product from "../type/Product";
 
 import Card from "./Card";
+import { useAnswers } from "../context/AnswersContext";
 
-interface SuggestionsProps {
-	budget: number | null;
-	answers: string[];
-}
-
-function Suggestions({ budget, answers }: SuggestionsProps) {
+function Suggestions() {
 	const [products, setProducts] = useState<Product[]>([]);
+	const { answers, budget } = useAnswers();
 
 	type Gender = "Homme" | "Femme" | "Indifférent";
 	type Interest = "Beauté" | "Maison" | "Mode" | "Multimedia" | "Surprends moi";

@@ -3,10 +3,9 @@ import { AnswersProvider } from "./context/AnswersContext";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/footer";
-
+import { useState } from "react";
+import { useSelectedProduct } from "./context/SelectedProductContext";
 function App() {
-<<<<<<< HEAD
-=======
 	const [showIntro, setShowIntro] = useState(true);
 	const [showQuestions, setShowQuestions] = useState(false);
 
@@ -28,7 +27,6 @@ function App() {
 	};
 
 	const { selectedProduct } = useSelectedProduct();
->>>>>>> ca877c9aec6b7795fbc3f881ceaf154e3944faa5
 	return (
 		<AnswersProvider>
 			<NavBar />

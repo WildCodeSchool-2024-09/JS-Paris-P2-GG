@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
 import "./ProductList.css";
-
+import { useAnswers } from "../context/AnswersContext";
 import type Product from "../type/Product";
 import Card from "./Card";
 
-<<<<<<< HEAD
 function ProductList() {
-	const [products, setProducts] = useState<Product[]>([]);
-	const { setSelectedProduct } = useSelectedProduct();
-=======
-interface ProductListProps {
-	budget: number | null;
-	answers: string[];
-}
-
-function ProductList({ budget, answers }: ProductListProps) {
+	const { answers, budget } = useAnswers();
 	const [products, setProducts] = useState<Product[]>([]);
 
 	type Gender = "Homme" | "Femme" | "Indifférent";
@@ -100,7 +91,6 @@ function ProductList({ budget, answers }: ProductListProps) {
 		Maison: ["furniture", "home-decoration", "kitchen-accessories"],
 		"Surprends moi": [],
 	};
->>>>>>> ca877c9aec6b7795fbc3f881ceaf154e3944faa5
 
 	useEffect(() => {
 		const limit = 194;
@@ -109,11 +99,6 @@ function ProductList({ budget, answers }: ProductListProps) {
 		fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
 			.then((res) => res.json())
 			.then((data) => {
-<<<<<<< HEAD
-				setProducts(data.products.slice(0, 5));
-			});
-	}, []);
-=======
 				let filteredProducts = data.products;
 
 				if (budget !== null) {
@@ -173,7 +158,6 @@ function ProductList({ budget, answers }: ProductListProps) {
 	function shuffleArray(array: Product[]) {
 		return array.sort(() => Math.random() - 0.5);
 	}
->>>>>>> ca877c9aec6b7795fbc3f881ceaf154e3944faa5
 
 	return (
 		<div className="cards">

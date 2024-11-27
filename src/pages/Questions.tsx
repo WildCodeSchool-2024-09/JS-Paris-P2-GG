@@ -4,11 +4,7 @@ import "./Questions.css";
 import { useNavigate } from "react-router-dom";
 import { useAnswers } from "../context/AnswersContext";
 
-interface QuestionsProps {
-	onComplete: (answers: string[], budget: number) => void;
-}
-
-function Questions({ onComplete }: QuestionsProps) {
+function Questions() {
 	const navigate = useNavigate();
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [selectedAnswers, setSelectedAnswers] = useState<string[]>(["", ""]);
@@ -36,10 +32,9 @@ function Questions({ onComplete }: QuestionsProps) {
 
 				return updatedAnswers;
 			});
+			setCurrentQuestion((prev) => prev + 1);
 		} else if (currentQuestion === 3 && answer === "Réveler mes désirs") {
 			navigate("/resultats");
-		} else {
-			setCurrentQuestion((prev) => prev + 1);
 		}
 	};
 
