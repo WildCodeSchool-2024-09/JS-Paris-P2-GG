@@ -25,7 +25,7 @@ function Card({ product }: CardProps) {
 			const newImage =
 				currentImage === "src/assets/magic-lamp-yellowborder.png"
 					? "src/assets/magic-lamp_yellow.png"
-					: "src/assets/magic-lamp.png";
+					: "src/assets/magic-lamp-yellowborder.png";
 			return {
 				...prevImages,
 				[productId]: newImage,

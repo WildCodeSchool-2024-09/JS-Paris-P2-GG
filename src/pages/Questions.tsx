@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Questions.css";
 
 interface QuestionsProps {
@@ -12,9 +12,9 @@ function Questions({ onComplete }: QuestionsProps) {
 	const [sliderValue, setSliderValue] = useState<number>(50);
 
 	const questions = [
-		"1/3 Le cadeau est pour qui?",
-		"2/3 Quels sont ses centres d'intérêts ?",
-		"3/3 Quel est votre budget?",
+		"Le cadeau est pour qui?",
+		"Choisir un centre d'intérêt ?",
+		"Quel est votre budget?",
 		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux.",
 	];
 
@@ -53,8 +53,11 @@ function Questions({ onComplete }: QuestionsProps) {
 					className="lamp-complete mirror"
 				/>
 			</div>
-			<div className="question-box">
-				<p>{questions[currentQuestion]}</p>
+			<div>
+				<div className="question-box">
+					<p>test</p>
+					<p>{questions[currentQuestion]}</p>
+				</div>
 
 				{currentQuestion === 2 ? (
 					<div className="slider-container">

@@ -6,12 +6,16 @@ import ggSound from "../assets/gg.mp3";
 import lampImg from "../assets/justlamp.png";
 import smokeImg from "../assets/justsmoke.png";
 
+import { Canvas } from "@react-three/fiber";
+import { Smoke } from "react-smoke";
+
 interface IntroProps {
 	onComplete: () => void;
 }
 
 function Intro({ onComplete }: IntroProps) {
-	const [showSmoke, setShowSmoke] = useState(false);
+	const [showStaticSmoke, setShowStaticSmoke] = useState(false);
+	const [showDynamicSmoke, setShowDynamicSmoke] = useState(false);
 	const [showGenie, setShowGenie] = useState(false);
 	const [showTitle, setShowTitle] = useState(true);
 
@@ -20,10 +24,16 @@ function Intro({ onComplete }: IntroProps) {
 		audio.play();
 
 		setShowTitle(false);
-		setShowSmoke(true);
+		setShowDynamicSmoke(true);
+		setTimeout(() => {
+			setShowStaticSmoke(true);
+		}, 2000);
 		setTimeout(() => {
 			setShowGenie(true);
-		}, 3000);
+		}, 2000);
+		setTimeout(() => {
+			setShowDynamicSmoke(false);
+		}, 4000);
 	};
 
 	const handleGGClick = () => {
@@ -33,46 +43,52 @@ function Intro({ onComplete }: IntroProps) {
 	};
 
 	return (
-		<div>
-			{showTitle && <h1 className="intro-title">Cliquez sur la lampe!</h1>}{" "}
-			<div className="intro">
-				<div className="lamp-container">
-					<img
-						src={lampImg}
-						alt="Lamp"
-						className="lamp"
-						onClick={handleLampClick}
-						onKeyDown={(e) => {
-							if (e.key === "Enter" || e.key === " ") {
-								handleLampClick();
-							}
-						}}
-					/>
-					{showSmoke && <img src={smokeImg} alt="Smoke" className="smoke" />}
-					{showGenie && (
-						<div className="genie-dialog">
-							<img src={genieImg} alt="Genie" className="genie" />
-							<div className="dialog">
-								<p>
-									Bonjour, je m'appelle Lassana. <br />
-									Je suis là pour vous aider <br />à choisir un cadeau parfait!{" "}
-									<br />
-									On y va?
-								</p>
-								<button
-									onClick={handleGGClick}
-									className="dialog-button"
-									type="button"
-								>
-									GG ça!!
-								</button>
-							</div>
+		<div className="intro">
+			<div className="lamp-container">
+				<img
+					src={lampImg}
+					alt="Lamp"
+					className="lamp"
+					onClick={handleLampClick}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							handleLampClick();
+						}
+					}}
+				/>
+				{showStaticSmoke && (
+					<img src={smokeImg} alt="Smoke" className="smoke" />
+				)}
+				{showDynamicSmoke && (
+					<div className="smoke-effect">
+						<Canvas>
+							<Smoke />
+						</Canvas>
+					</div>
+				)}
+				{showGenie && (
+					<div className="genie-dialog">
+						<img src={genieImg} alt="Genie" className="genie" />
+						<div className="dialog">
+							<p>
+								Bonjour, je m'appelle Lassana. <br />
+								Je suis là pour vous aider <br />à choisir un cadeau parfait!
+								<br />
+								On y va?
+							</p>
+							<button
+								onClick={handleGGClick}
+								className="dialog-button"
+								type="button"
+							>
+								GG ça!!
+							</button>
 						</div>
-					)}
-				</div>
+					</div>
+				)}
 			</div>
+			{showTitle && <h1 className="intro-title">Cliquez sur la lampe!</h1>}
 		</div>
 	);
 }
-
 export default Intro;

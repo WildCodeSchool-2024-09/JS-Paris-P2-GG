@@ -5,7 +5,12 @@
 	gap: 1em;
 }
 
+h6 {
+	color: #ffffff;
+}
+
 #camel {
 	height: 2em;
-	padding-left: 15px;
+	padding-right: 15px;
+	transform: scaleX(-1);
 }
