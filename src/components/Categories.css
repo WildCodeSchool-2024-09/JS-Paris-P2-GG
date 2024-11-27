@@ -15,53 +15,29 @@
 	filter: drop-shadow(2px 2px 4px black);
 }
 
-.accordion {
-	background-image: url("/src/assets/buttoncategories.png");
-	outline: none;
-	background-size: cover;
-	background-position: center;
+.category-menu {
+	background-image: url("src/assets/buttoncategories.png");
 	background-color: transparent;
-	color: white;
-	padding: 16px;
-	font-size: 26px;
-	font-family: var(--titlefont);
-	font-weight: bold;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: right 8px center;
 	border: none;
-	width: 700px;
-	height: 150px;
-	transform: scale(0.57);
-	object-fit: contain;
+	display: flex;
+	justify-content: center;
 	text-align: center;
+	color: white;
+	text-shadow: 2px 2px black;
+	font-family: var(--titlefont);
+	width: 450px;
+	height: 80px;
+	font-size: 22px;
+	margin: 2rem 0 2rem 0;
 	cursor: pointer;
+	appearance: none;
 }
 
-.accordion-content {
-	background-color: none;
-	display: inline-flex;
-	justify-content: center;
-	width: 80%;
-	padding: 16px;
-	border-radius: 8px;
-	margin-top: -20px;
-	overflow: hidden;
-}
-
-.accordion-content ul {
-	list-style-type: none;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-}
-
-.accordion-content li {
-	padding: 10px;
-	margin: 8px 0;
-	display: flex;
-	justify-content: center;
-	background-color: none;
-	border-radius: 8px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+.category-menu option {
+	background-color: #891f61;
 }
 
 .category-item {
