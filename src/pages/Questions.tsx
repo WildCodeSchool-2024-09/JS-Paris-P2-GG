@@ -7,7 +7,7 @@ interface QuestionsProps {
 }
 
 function Questions({ onComplete }: QuestionsProps) {
-	const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [indexQuestion, setIndexQuestion] = useState(0);
 	const [selectedAnswers, setSelectedAnswers] = useState<string[]>(["", ""]);
 	const [sliderValue, setSliderValue] = useState<number>(50);
 
@@ -18,6 +18,8 @@ function Questions({ onComplete }: QuestionsProps) {
 		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux.",
 	];
 
+	const numberQuestion = indexQuestion + 1;
+
 	const answers = [
 		["Femme", "Homme", "Indifférent"],
 		["Beauté", "Maison", "Mode", "Multimedia", "Surprends moi"],
@@ -26,17 +28,17 @@ function Questions({ onComplete }: QuestionsProps) {
 	];
 
 	const handleSelectAnswer = (answer: string) => {
-		if (currentQuestion < 2) {
+		if (indexQuestion < 2) {
 			setSelectedAnswers((prev) => {
 				const updatedAnswers = [...prev];
-				updatedAnswers[currentQuestion] = answer;
+				updatedAnswers[indexQuestion] = answer;
 				return updatedAnswers;
 			});
-		} else if (currentQuestion === 3 && answer === "Réveler mes désirs") {
+		} else if (indexQuestion === 3 && answer === "Réveler mes désirs") {
 			onComplete(selectedAnswers, sliderValue);
 		}
 
-		setCurrentQuestion((prev) => prev + 1);
+		setIndexQuestion((prev) => prev + 1);
 	};
 
 	return (
@@ -55,11 +57,15 @@ function Questions({ onComplete }: QuestionsProps) {
 			</div>
 			<div>
 				<div className="question-box">
-					<p>test</p>
-					<p>{questions[currentQuestion]}</p>
+					{indexQuestion < questions.length - 1 ? (
+						<p>
+							Question {numberQuestion} / {questions.length - 1}
+						</p>
+					) : null}
+					<p>{questions[indexQuestion]}</p>
 				</div>
 
-				{currentQuestion === 2 ? (
+				{indexQuestion === 2 ? (
 					<div className="slider-container">
 						<input
 							type="range"
@@ -76,10 +82,10 @@ function Questions({ onComplete }: QuestionsProps) {
 							onClick={() => {
 								setSelectedAnswers((prev) => {
 									const updatedAnswers = [...prev];
-									updatedAnswers[currentQuestion] = `${sliderValue}€`;
+									updatedAnswers[indexQuestion] = `${sliderValue}€`;
 									return updatedAnswers;
 								});
-								setCurrentQuestion(3);
+								setIndexQuestion(3);
 							}}
 							className="answer-button"
 							whileHover={{ scale: 1.1 }}
@@ -88,9 +94,9 @@ function Questions({ onComplete }: QuestionsProps) {
 							Je valide
 						</motion.button>
 					</div>
-				) : answers[currentQuestion]?.length > 0 ? (
+				) : answers[indexQuestion]?.length > 0 ? (
 					<div className="answer-options">
-						{answers[currentQuestion].map((answer) => (
+						{answers[indexQuestion].map((answer) => (
 							<motion.button
 								key={answer}
 								type="button"
