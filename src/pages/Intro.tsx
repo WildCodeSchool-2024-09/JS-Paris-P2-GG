@@ -7,11 +7,10 @@ import ggSound from "../assets/gg.mp3";
 import lampImg from "../assets/justlamp.png";
 import smokeImg from "../assets/justsmoke.png";
 
-interface IntroProps {
-	onComplete: () => void;
-}
+import { Canvas } from "@react-three/fiber";
+import { Smoke } from "react-smoke";
 
-function Intro({ onComplete }: IntroProps) {
+function Intro() {
 	const [showStaticSmoke, setShowStaticSmoke] = useState(false);
 	const [showDynamicSmoke, setShowDynamicSmoke] = useState(false);
 	const [showGenie, setShowGenie] = useState(false);

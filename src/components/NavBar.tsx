@@ -1,9 +1,13 @@
 import "./NavBar.css";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useWishList } from "../context/WishListContext";
 import ToggleTheme from "./ToggleTheme";
 
 function NavBar() {
+	const navigate = useNavigate();
+	const questionsLink = () => {
+		navigate("/questions");
+	};
 	const { WishList } = useWishList();
 
 	return (
@@ -14,6 +18,12 @@ function NavBar() {
 						id="logoGG"
 						src="src\assets\LogoGG_lampe.png"
 						alt="Logo GG - Gift Generator"
+						onClick={() => {
+							questionsLink();
+						}}
+						onKeyUp={() => {
+							questionsLink();
+						}}
 					/>
 					<ul>
 						<li>
