@@ -2,6 +2,7 @@ import type Product from "../type/Product";
 import "./ProductModal.css";
 import { useState } from "react";
 import { useSelectedProduct } from "../context/SelectedProductContext";
+import { useBasket } from "../context/BasketContext";
 
 interface ProductModalProps {
 	product: Product | null;
@@ -14,7 +15,7 @@ interface ImagesState {
 function ProductModal({ product }: ProductModalProps) {
 	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
-
+	const { setBasket } = useBasket();
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
 			const currentImage =
@@ -34,7 +35,14 @@ function ProductModal({ product }: ProductModalProps) {
 			changeImage(productId);
 		}
 	};
-
+	function addToBasket(produit) {
+		setBasket((prevState) => {
+			const isInBasket = prevState.some((item) => item.id === produit.id);
+			return isInBasket
+				? prevState.filter((item) => item.id !== produit.id)
+				: [...prevState, produit];
+		});
+	}
 	return (
 		<div className="modal">
 			<div className="modal-content">
@@ -63,15 +71,16 @@ function ProductModal({ product }: ProductModalProps) {
 					<button
 						type="button"
 						className="wishlist-button"
-						onClick={() => product && changeImage(product.id)}
-						onKeyDown={(event) => product && handleKeyDown(event, product.id)}
+						onClick={() => {
+							changeImage(product.id);
+							addToBasket(product);
+						}}
+						onKeyDown={(event) => handleKeyDown(event, product.id)}
 						tabIndex={0}
 					>
 						<img
 							src={
-								product
-									? images[product.id]
-									: "src/assets/magic-lamp-yellowborder.png"
+								images[product.id] || "src/assets/magic-lamp-yellowborder.png"
 							}
 							alt="magic lamp"
 							className="magic-lamp"

@@ -1,7 +1,11 @@
 import "./NavBar.css";
 import ToggleTheme from "./ToggleTheme";
+import { useBasket } from "../context/BasketContext";
+import { useState } from "react";
 
 function NavBar() {
+	const { basket } = useBasket();
+
 	return (
 		<nav>
 			<div nav-icons-background>
@@ -20,12 +24,15 @@ function NavBar() {
 							/>
 						</li>
 						<li>
-							<img
-								className="nav-picto"
-								src="src\assets\magic-lamp_yellow.png"
-								alt="Yellow magic lamp as wishlist"
-							/>
+							<button type="button" className="navbar-wishlist-button">
+								<img
+									className="nav-picto"
+									src="src\assets\magic-lamp_yellow.png"
+									alt="Yellow magic lamp as wishlist"
+								/>
+							</button>
 						</li>
+						<li className="basket-length">{basket.length}</li>
 						<li>
 							<ToggleTheme />
 						</li>

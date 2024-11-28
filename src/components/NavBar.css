@@ -39,3 +39,10 @@ nav-icons-background {
 	justify-content: center;
 	z-index: 0;
 }
+.navbar-wishlist-button {
+	background: none;
+	border: none;
+}
+.basket-length {
+	color: white;
+}

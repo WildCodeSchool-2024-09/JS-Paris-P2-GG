@@ -19,7 +19,7 @@ function Questions() {
 
 	const listAnswers = [
 		["Femme", "Homme", "Indifférent"],
-		["Beauté", "Maison", "Mode", "Multimedia", "Surprends moi"],
+		["Beauté", "Maison", "Mode", "Tech & Loisirs", "Surprends moi"],
 		[],
 		["Réveler mes désirs"],
 	];
