@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Categories from "../components/Categories";
 import ProductList from "../components/ProductList";
 import ProductModal from "../components/ProductModal";
@@ -7,7 +6,7 @@ import Suggestions from "../components/Suggestions";
 import { useSelectedProduct } from "../context/SelectedProductContext";
 
 function Resultats() {
-	const { selectedProduct, setSelectedProduct } = useSelectedProduct();
+	const { selectedProduct } = useSelectedProduct();
 
 	return (
 		<>

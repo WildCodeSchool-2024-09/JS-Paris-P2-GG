@@ -12,6 +12,7 @@ nav {
 #logoGG {
 	max-height: 5em;
 	padding-left: 1em;
+	cursor: pointer;
 }
 
 .nav-picto {
@@ -27,7 +28,7 @@ ul {
 	list-style-type: none;
 }
 
-nav-icons-background {
+.nav-icons-background {
 	position: absolute;
 	left: 0;
 	right: 0;

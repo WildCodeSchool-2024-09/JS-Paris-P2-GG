@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import "./NavBar.css";
+import { useNavigate } from "react-router-dom";
 import BasketContext from "../context/BasketContext";
 import { useWishList } from "../context/WishListContext";
 import ToggleTheme from "./ToggleTheme";
 
 function NavBar() {
+	const navigate = useNavigate();
+	const questionsLink = () => {
+		navigate("/questions");
+	};
 	const { basket } = useContext(BasketContext);
 	const { WishList } = useWishList();
 
@@ -16,6 +21,12 @@ function NavBar() {
 						id="logoGG"
 						src="src\assets\LogoGG_lampe.png"
 						alt="Logo GG - Gift Generator"
+						onClick={() => {
+							questionsLink();
+						}}
+						onKeyUp={() => {
+							questionsLink();
+						}}
 					/>
 					<ul>
 						<li>

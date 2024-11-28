@@ -29,10 +29,8 @@
 
 .question-box {
 	margin-top: -20%;
-}
-
-.question-box p {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-image: url("/src/assets/questios.png");
@@ -43,12 +41,15 @@
 	background-repeat: no-repeat;
 	padding: 45px;
 	border-radius: 10px;
+	margin-bottom: 10%;
+}
+
+.question-box p {
 	font-family: var(--titlefont);
 	font-size: 32px;
 	color: white;
-	max-width: 500px;
 	text-align: center;
-	margin-top: 25%;
+	margin: 0px 0px 0px 0px;
 }
 
 .answer-options {
