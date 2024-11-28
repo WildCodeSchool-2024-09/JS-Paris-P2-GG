@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import "./Card.css";
 
 import { useSelectedProduct } from "../context/SelectedProductContext";
-
+import { WishListProvider, useWishList } from "../context/WishListContext";
 import type Product from "../type/Product";
 
 interface CardProps {
@@ -17,7 +17,7 @@ interface ImagesState {
 function Card({ product }: CardProps) {
 	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
-
+	const { setWishList } = useWishList();
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
 			const currentImage =
@@ -37,6 +37,14 @@ function Card({ product }: CardProps) {
 			changeImage(productId);
 		}
 	};
+	function addToWishList(produit: Product) {
+		setWishList((prevState) => {
+			const isInWishList = prevState.some((item) => item.id === produit.id);
+			return isInWishList
+				? prevState.filter((item) => item.id !== produit.id)
+				: [...prevState, produit];
+		});
+	}
 
 	return (
 		<div className="cards">
@@ -51,7 +59,10 @@ function Card({ product }: CardProps) {
 				<button
 					type="button"
 					className="wishlist-button"
-					onClick={() => changeImage(product.id)}
+					onClick={() => {
+						changeImage(product.id);
+						addToWishList(product);
+					}}
 					onKeyDown={(event) => handleKeyDown(event, product.id)}
 					tabIndex={0}
 				>
