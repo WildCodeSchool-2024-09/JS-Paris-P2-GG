@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Categories from "./components/Categories";
 import NavBar from "./components/NavBar";
