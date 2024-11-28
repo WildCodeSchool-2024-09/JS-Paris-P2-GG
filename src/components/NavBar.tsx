@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
+import BasketContext from "../context/BasketContext";
 import { useWishList } from "../context/WishListContext";
 import ToggleTheme from "./ToggleTheme";
 
@@ -8,6 +10,7 @@ function NavBar() {
 	const questionsLink = () => {
 		navigate("/questions");
 	};
+	const { basket } = useContext(BasketContext);
 	const { WishList } = useWishList();
 
 	return (
@@ -33,6 +36,7 @@ function NavBar() {
 								alt="Yellow chest as basket"
 							/>
 						</li>
+						<li className="basket">{basket.length}</li>
 						<li>
 							<button type="button" className="navbar-wishlist-button">
 								<img

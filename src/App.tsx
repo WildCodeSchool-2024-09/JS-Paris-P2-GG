@@ -5,6 +5,8 @@ import { useState } from "react";
 import NavBar from "./components/NavBar";
 import Footer from "./components/footer";
 import { useSelectedProduct } from "./context/SelectedProductContext";
+import Intro from "./pages/Intro";
+
 function App() {
 	const [showIntro, setShowIntro] = useState(true);
 	const [showQuestions, setShowQuestions] = useState(false);

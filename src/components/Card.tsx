@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
-
 import "./Card.css";
-
 import { useSelectedProduct } from "../context/SelectedProductContext";
 import { WishListProvider, useWishList } from "../context/WishListContext";
 import type Product from "../type/Product";

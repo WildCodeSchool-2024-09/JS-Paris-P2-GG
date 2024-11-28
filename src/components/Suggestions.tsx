@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./Suggestions.css";
-
 import { useAnswers } from "../context/AnswersContext";
 import type Product from "../type/Product";
 import Card from "./Card";
