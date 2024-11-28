@@ -2,7 +2,7 @@ import type Product from "../type/Product";
 import "./ProductModal.css";
 import { useState } from "react";
 import { useSelectedProduct } from "../context/SelectedProductContext";
-import { useBasket } from "../context/BasketContext";
+import { useWishList } from "../context/WishListContext";
 
 interface ProductModalProps {
 	product: Product;
@@ -15,7 +15,7 @@ interface ImagesState {
 function ProductModal({ product }: ProductModalProps) {
 	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
-	const { setBasket } = useBasket();
+	const { setWishList } = useWishList();
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
 			const currentImage =
@@ -35,10 +35,10 @@ function ProductModal({ product }: ProductModalProps) {
 			changeImage(productId);
 		}
 	};
-	function addToBasket(produit: Product) {
-		setBasket((prevState) => {
-			const isInBasket = prevState.some((item) => item.id === produit.id);
-			return isInBasket
+	function addToWishList(produit: Product) {
+		setWishList((prevState) => {
+			const isInWishList = prevState.some((item) => item.id === produit.id);
+			return isInWishList
 				? prevState.filter((item) => item.id !== produit.id)
 				: [...prevState, produit];
 		});
@@ -73,7 +73,7 @@ function ProductModal({ product }: ProductModalProps) {
 						className="wishlist-button"
 						onClick={() => {
 							changeImage(product.id);
-							addToBasket(product);
+							addToWishList(product);
 						}}
 						onKeyDown={(event) => handleKeyDown(event, product.id)}
 						tabIndex={0}

@@ -5,7 +5,7 @@ import "./Card.css";
 import { useSelectedProduct } from "../context/SelectedProductContext";
 
 import type Product from "../type/Product";
-import { useBasket } from "../context/BasketContext";
+import { useWishList, WishListProvider } from "../context/WishListContext";
 
 interface CardProps {
 	product: Product;
@@ -18,7 +18,7 @@ interface ImagesState {
 function Card({ product }: CardProps) {
 	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
-	const { setBasket } = useBasket();
+	const { setWishList } = useWishList();
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
 			const currentImage =
@@ -38,10 +38,10 @@ function Card({ product }: CardProps) {
 			changeImage(productId);
 		}
 	};
-	function addToBasket(produit: Product) {
-		setBasket((prevState) => {
-			const isInBasket = prevState.some((item) => item.id === produit.id);
-			return isInBasket
+	function addToWishList(produit: Product) {
+		setWishList((prevState) => {
+			const isInWishList = prevState.some((item) => item.id === produit.id);
+			return isInWishList
 				? prevState.filter((item) => item.id !== produit.id)
 				: [...prevState, produit];
 		});
@@ -62,7 +62,7 @@ function Card({ product }: CardProps) {
 					className="wishlist-button"
 					onClick={() => {
 						changeImage(product.id);
-						addToBasket(product);
+						addToWishList(product);
 					}}
 					onKeyDown={(event) => handleKeyDown(event, product.id)}
 					tabIndex={0}

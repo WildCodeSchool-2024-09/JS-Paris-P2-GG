@@ -1,10 +1,10 @@
 import "./NavBar.css";
 import ToggleTheme from "./ToggleTheme";
-import { useBasket } from "../context/BasketContext";
+import { useWishList } from "../context/WishListContext";
 import { useState } from "react";
 
 function NavBar() {
-	const { basket } = useBasket();
+	const { WishList } = useWishList();
 
 	return (
 		<nav>
@@ -32,7 +32,7 @@ function NavBar() {
 								/>
 							</button>
 						</li>
-						<li className="basket-length">{basket.length}</li>
+						<li className="WishList-length">{WishList.length}</li>
 						<li>
 							<ToggleTheme />
 						</li>

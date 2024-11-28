@@ -4,15 +4,15 @@ import "./index.css";
 import { SelectedProductProvider } from "./context/SelectedProductContext.tsx";
 import Root from "./router";
 import { AnswersProvider } from "./context/AnswersContext.tsx";
-import { BasketProvider } from "./context/BasketContext.tsx";
+import { WishListProvider } from "./context/WishListContext.tsx";
 
 createRoot(document.getElementById("root") || document.body).render(
 	<StrictMode>
 		<SelectedProductProvider>
 			<AnswersProvider>
-				<BasketProvider>
+				<WishListProvider>
 					<Root />
-				</BasketProvider>
+				</WishListProvider>
 			</AnswersProvider>
 		</SelectedProductProvider>
 	</StrictMode>,
