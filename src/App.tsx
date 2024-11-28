@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { AnswersProvider } from "./context/AnswersContext";
 import "./App.css";
+import { useState } from "react";
 import NavBar from "./components/NavBar";
 import Footer from "./components/footer";
-import { useState } from "react";
 import { useSelectedProduct } from "./context/SelectedProductContext";
+import Intro from "./pages/Intro";
+
 function App() {
 	const [showIntro, setShowIntro] = useState(true);
 	const [showQuestions, setShowQuestions] = useState(false);

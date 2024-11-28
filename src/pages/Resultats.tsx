@@ -1,10 +1,11 @@
-import Recap from "../components/Recap";
-import ProductList from "../components/ProductList";
-import Suggestions from "../components/Suggestions";
-import ProductModal from "../components/ProductModal";
-import Categories from "../components/Categories";
 import { useState } from "react";
+import Categories from "../components/Categories";
+import ProductList from "../components/ProductList";
+import ProductModal from "../components/ProductModal";
+import Recap from "../components/Recap";
+import Suggestions from "../components/Suggestions";
 import { useSelectedProduct } from "../context/SelectedProductContext";
+
 function Resultats() {
 	const { selectedProduct, setSelectedProduct } = useSelectedProduct();
 

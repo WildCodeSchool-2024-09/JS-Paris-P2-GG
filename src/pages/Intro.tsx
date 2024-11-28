@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./Intro.css";
+import { useNavigate } from "react-router-dom";
 import genieImg from "../assets/Lassana-removebg-final.png";
 import lampSound from "../assets/geniesound.mp3";
 import ggSound from "../assets/gg.mp3";
 import lampImg from "../assets/justlamp.png";
 import smokeImg from "../assets/justsmoke.png";
-import { useNavigate } from "react-router-dom";
 
 function Intro() {
 	const navigate = useNavigate();

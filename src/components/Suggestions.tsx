@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Suggestions.css";
-
-import type Product from "../type/Product";
-
-import Card from "./Card";
 import { useAnswers } from "../context/AnswersContext";
+import type Product from "../type/Product";
+import Card from "./Card";
 
 function Suggestions() {
 	const [products, setProducts] = useState<Product[]>([]);
