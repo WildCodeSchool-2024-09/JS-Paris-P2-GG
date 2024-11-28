@@ -38,7 +38,7 @@ function Card({ product }: CardProps) {
 			changeImage(productId);
 		}
 	};
-	function addToBasket(produit) {
+	function addToBasket(produit: Product) {
 		setBasket((prevState) => {
 			const isInBasket = prevState.some((item) => item.id === produit.id);
 			return isInBasket

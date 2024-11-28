@@ -5,7 +5,7 @@ import { useSelectedProduct } from "../context/SelectedProductContext";
 import { useBasket } from "../context/BasketContext";
 
 interface ProductModalProps {
-	product: Product | null;
+	product: Product;
 }
 
 interface ImagesState {
@@ -35,7 +35,7 @@ function ProductModal({ product }: ProductModalProps) {
 			changeImage(productId);
 		}
 	};
-	function addToBasket(produit) {
+	function addToBasket(produit: Product) {
 		setBasket((prevState) => {
 			const isInBasket = prevState.some((item) => item.id === produit.id);
 			return isInBasket
