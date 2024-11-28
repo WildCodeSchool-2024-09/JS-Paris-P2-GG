@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import "./NavBar.css";
 import BasketContext from "../context/BasketContext";
+import { useWishList } from "../context/WishListContext";
 import ToggleTheme from "./ToggleTheme";
 
 function NavBar() {
 	const { basket } = useContext(BasketContext);
+	const { WishList } = useWishList();
 
 	return (
 		<nav>
@@ -25,12 +27,15 @@ function NavBar() {
 						</li>
 						<li className="basket">{basket.length}</li>
 						<li>
-							<img
-								className="nav-picto"
-								src="src\assets\magic-lamp_yellow.png"
-								alt="Yellow magic lamp as wishlist"
-							/>
+							<button type="button" className="navbar-wishlist-button">
+								<img
+									className="nav-picto"
+									src="src\assets\magic-lamp_yellow.png"
+									alt="Yellow magic lamp as wishlist"
+								/>
+							</button>
 						</li>
+						<li className="WishList-length">{WishList.length}</li>
 						<li>
 							<ToggleTheme />
 						</li>

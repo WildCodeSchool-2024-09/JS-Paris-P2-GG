@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import "./ProductList.css";
-
+import { useAnswers } from "../context/AnswersContext";
 import type Product from "../type/Product";
 import Card from "./Card";
 
-interface ProductListProps {
-	budget: number | null;
-	answers: string[];
-}
-
-function ProductList({ budget, answers }: ProductListProps) {
+function ProductList() {
+	const { answers, budget } = useAnswers();
 	const [products, setProducts] = useState<Product[]>([]);
 
 	type Gender = "Homme" | "Femme" | "Indifférent";
