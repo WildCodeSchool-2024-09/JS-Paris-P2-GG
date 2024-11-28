@@ -66,6 +66,12 @@
 	box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
+.basket {
+	color: white;
+	font-weight: 500;
+	font-size: 14px;
+}
+
 .wishlist-button {
 	background: none;
 	display: flex;

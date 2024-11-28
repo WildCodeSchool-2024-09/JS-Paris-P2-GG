@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import "./NavBar.css";
+import BasketContext from "../context/BasketContext";
 import ToggleTheme from "./ToggleTheme";
 
 function NavBar() {
+	const { basket } = useContext(BasketContext);
+
 	return (
 		<nav>
 			<div nav-icons-background>
@@ -19,6 +23,7 @@ function NavBar() {
 								alt="Yellow chest as basket"
 							/>
 						</li>
+						<li className="basket">{basket.length}</li>
 						<li>
 							<img
 								className="nav-picto"

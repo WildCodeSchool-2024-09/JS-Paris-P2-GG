@@ -1,9 +1,19 @@
 import { createContext, useContext, useState } from "react";
+import type { Dispatch, ReactNode } from "react";
+import type Product from "../type/Product";
 
-const BasketContext = createContext(null);
+interface BasketContext {
+	basket: Product[] | [];
+	setBasket: Dispatch<React.SetStateAction<Product[] | []>>;
+}
 
-export function BasketProvider({ children }) {
-	const [basket, setBasket] = useState([]);
+const BasketContext = createContext<BasketContext>({
+	basket: [],
+	setBasket: () => [],
+});
+
+export function BasketProvider({ children }: { children: ReactNode }) {
+	const [basket, setBasket] = useState<Product[]>([]);
 
 	return (
 		<BasketContext.Provider value={{ basket, setBasket }}>
@@ -15,3 +25,5 @@ export function BasketProvider({ children }) {
 export const useBasket = () => {
 	return useContext(BasketContext);
 };
+
+export default BasketContext;

@@ -1,10 +1,11 @@
 import type Product from "../type/Product";
 import "./ProductModal.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import BasketContext from "../context/BasketContext";
 import { useSelectedProduct } from "../context/SelectedProductContext";
 
 interface ProductModalProps {
-	product: Product | null;
+	product: Product;
 }
 
 interface ImagesState {
@@ -14,6 +15,7 @@ interface ImagesState {
 function ProductModal({ product }: ProductModalProps) {
 	const { setSelectedProduct } = useSelectedProduct();
 	const [images, setImages] = useState<ImagesState>({});
+	const { setBasket } = useContext(BasketContext);
 
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
@@ -34,6 +36,15 @@ function ProductModal({ product }: ProductModalProps) {
 			changeImage(productId);
 		}
 	};
+
+	function addToBasket(product: Product) {
+		setBasket((prevState) => {
+			const isInBasket = prevState.some((item) => item.id === product.id);
+			return isInBasket
+				? prevState.filter((item) => item.id !== product.id)
+				: [...prevState, product];
+		});
+	}
 
 	return (
 		<div className="modal">
@@ -88,7 +99,16 @@ function ProductModal({ product }: ProductModalProps) {
 					>
 						Créer une cagnotte
 					</button>
-					<button className="modal-buttons" type="button">
+					<button
+						className="modal-buttons"
+						type="button"
+						onClick={() => {
+							addToBasket(product);
+						}}
+						onKeyUp={() => {
+							addToBasket(product);
+						}}
+					>
 						Ajouter au panier
 					</button>
 				</div>
