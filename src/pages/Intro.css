@@ -1,0 +1,156 @@
+.intro {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.intro-title {
+	font-family: var(--titlefont);
+	filter: drop-shadow(2px 2px 4px black);
+}
+
+.lamp-container {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	margin-top: 12%;
+	left: -2%;
+}
+.lamp {
+	height: 100%;
+	width: 70%;
+	transform: scaleX(-1);
+}
+.smoke {
+	position: absolute;
+	left: 15%;
+	transform: scaleX(-1);
+	width: 70%;
+	height: auto;
+	opacity: 0;
+	animation: fade-in 1s forwards;
+	z-index: 2;
+}
+.genie-dialog {
+	display: flex;
+	align-items: center;
+	position: relative;
+	text-align: center;
+	margin-top: -100%;
+	left: 30%;
+	gap: 2rem;
+}
+.genie {
+	height: 100%;
+	width: 45%;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	transform: translate(-50%, -50%) scale(0.8);
+	opacity: 0;
+	animation: fade-in-slow 2s ease-in-out forwards 1s;
+	border-radius: 0 0 15% 15%;
+	z-index: 1;
+}
+.dialog {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20%;
+	border: none;
+	width: 300px;
+	opacity: 0;
+	animation: fade-in-dialog 1s ease-in-out forwards;
+	animation-delay: 2s;
+}
+@keyframes fade-in-dialog {
+	0% {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.dialog p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url("/src/assets/questios.png");
+	background-size: 135%;
+	background-position: center;
+	height: 250px;
+	width: 600px;
+	font-size: 25px;
+	line-height: 1.5;
+	color: white;
+	font-family: var(--titlefont);
+}
+.dialog-button {
+	background-image: url(/src/assets/catlist.png);
+	background-color: transparent;
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	color: white;
+	margin-top: 0px;
+	padding: 10px 20px;
+	font-size: 23px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-family: var(--textfont);
+	height: 70px;
+	width: 180px;
+}
+.dialog-button:hover {
+	transform: translateY(-3px);
+	box-shadow: transparent;
+}
+@keyframes fade-in {
+	to {
+		opacity: 1;
+	}
+}
+@keyframes fade-in-slow {
+	0% {
+		opacity: 0;
+		transform: translate(-45%, 50%) scale(0.8);
+	}
+	50% {
+		opacity: 0.5;
+		transform: translate(-45%, -5%) scale(1);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(-45%, -5%) scale(1);
+	}
+}
+.intro-footer {
+	display: none;
+}
+.smoke-effect {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 3;
+	opacity: 0;
+	background: #4f8df7;
+	animation: fade-in-out-smoke 5s forwards;
+	transition: opacity 2s ease-out;
+}
+@keyframes fade-in-out-smoke {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 1;
+	}
+}

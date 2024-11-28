@@ -1,5 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Jura:wght@300..700&family=Metrophobic&display=swap");
+
 #root {
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+	margin: 0 auto;
+	padding: 0rem;
+	text-align: center;
+	--titlefont: "Jura", sans-serif;
+	--textfont: "Metrophobic", sans-serif;
+}
+
+body {
+	background-image: url("src/assets/desert-night-8807846-transformed.png");
+	min-height: 100vh;
+	background-size: cover;
+	margin: 0;
+	text-align: center;
 }

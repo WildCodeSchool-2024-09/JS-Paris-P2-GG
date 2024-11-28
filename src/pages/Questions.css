@@ -1,0 +1,133 @@
+.questions-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: 100vh;
+	margin-top: 3%;
+}
+
+.genie-lamp {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.genie-lassana {
+	height: 400px;
+	width: 400px;
+	border-radius: 0 0 12% 12%;
+}
+
+.lamp-complete {
+	height: 450px;
+	transform: scaleX(-1);
+	width: 600px;
+	margin-top: -120px;
+	margin-left: 200px;
+}
+
+.question-box {
+	margin-top: -20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-image: url("/src/assets/questios.png");
+	background-size: 140%;
+	height: 200px;
+	width: 600px;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 45px;
+	border-radius: 10px;
+	margin-bottom: 10%;
+}
+
+.question-box p {
+	font-family: var(--titlefont);
+	font-size: 32px;
+	color: white;
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+}
+
+.answer-options {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: -10%;
+	gap: 0px;
+}
+
+.answer-button {
+	padding: 10px;
+	background-image: url(/src/assets/catlist.png);
+	background-size: 100%;
+	background-position: center;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	width: 170px;
+	height: 60px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	color: white;
+	font-size: 16px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.answer-button:hover {
+	transform: translateY(-3px);
+	box-shadow: transparent;
+}
+
+.answer-button:active {
+	transform: translateY(3px);
+	box-shadow: transparent;
+}
+
+.slider-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.budget-slider {
+	width: 50%;
+	appearance: none;
+	height: 8px;
+
+	border-radius: 5px;
+	background: #ddd;
+	outline: none;
+	transition: background 0.3s;
+}
+
+.budget-slider::-webkit-slider-thumb {
+	appearance: none;
+	width: 75px;
+	height: 45px;
+	background: url(/src/assets/camel.png);
+	transform: scaleX(-1);
+	background-size: 70%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.budget-slider:hover {
+	background: #ccc;
+}
+
+h4 {
+	color: white;
+	font-family: var(--titlefont);
+	font-size: larger;
+	text-shadow: 2px 2px black,;
+}

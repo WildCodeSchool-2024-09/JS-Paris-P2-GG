@@ -1,0 +1,16 @@
+.footer {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	gap: 1em;
+}
+
+h6 {
+	color: #ffffff;
+}
+
+#camel {
+	height: 2em;
+	padding-right: 15px;
+	transform: scaleX(-1);
+}
