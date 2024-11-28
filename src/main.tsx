@@ -1,10 +1,19 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
 import { SelectedProductProvider } from "./context/SelectedProductContext.tsx";
+import Root from "./router";
+import { AnswersProvider } from "./context/AnswersContext.tsx";
+import { WishListProvider } from "./context/WishListContext.tsx";
 
 createRoot(document.getElementById("root") || document.body).render(
-	<SelectedProductProvider>
-		<App />
-	</SelectedProductProvider>,
+	<StrictMode>
+		<SelectedProductProvider>
+			<AnswersProvider>
+				<WishListProvider>
+					<Root />
+				</WishListProvider>
+			</AnswersProvider>
+		</SelectedProductProvider>
+	</StrictMode>,
 );

@@ -1,15 +1,14 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import "./Questions.css";
+import { useNavigate } from "react-router-dom";
+import { useAnswers } from "../context/AnswersContext";
 
-interface QuestionsProps {
-	onComplete: (answers: string[], budget: number) => void;
-}
-
-function Questions({ onComplete }: QuestionsProps) {
+function Questions() {
+	const navigate = useNavigate();
 	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [selectedAnswers, setSelectedAnswers] = useState<string[]>(["", ""]);
-	const [sliderValue, setSliderValue] = useState<number>(50);
+
+	const { answers, budget, setAnswers, setBudget } = useAnswers();
 
 	const questions = [
 		"1/3 Le cadeau est pour qui?",
@@ -18,25 +17,25 @@ function Questions({ onComplete }: QuestionsProps) {
 		"Vos désirs sont des ordres. Voici mes suggestions de cadeaux.",
 	];
 
-	const answers = [
+	const listAnswers = [
 		["Femme", "Homme", "Indifférent"],
-		["Beauté", "Maison", "Mode", "Multimedia", "Surprends moi"],
+		["Beauté", "Maison", "Mode", "Tech & Loisirs", "Surprends moi"],
 		[],
 		["Réveler mes désirs"],
 	];
 
 	const handleSelectAnswer = (answer: string) => {
 		if (currentQuestion < 2) {
-			setSelectedAnswers((prev) => {
+			setAnswers((prev) => {
 				const updatedAnswers = [...prev];
 				updatedAnswers[currentQuestion] = answer;
+
 				return updatedAnswers;
 			});
+			setCurrentQuestion((prev) => prev + 1);
 		} else if (currentQuestion === 3 && answer === "Réveler mes désirs") {
-			onComplete(selectedAnswers, sliderValue);
+			navigate("/resultats");
 		}
-
-		setCurrentQuestion((prev) => prev + 1);
 	};
 
 	return (
@@ -59,21 +58,22 @@ function Questions({ onComplete }: QuestionsProps) {
 				{currentQuestion === 2 ? (
 					<div className="slider-container">
 						<input
+							title="budget"
 							type="range"
 							min="5"
 							max="3000"
 							step="10"
-							value={sliderValue}
-							onChange={(e) => setSliderValue(Number(e.target.value))}
+							value={budget}
+							onChange={(e) => setBudget(Number(e.target.value))}
 							className="budget-slider"
 						/>
-						<h4>{sliderValue}€</h4>
+						<h4>{budget}€</h4>
 						<motion.button
 							type="button"
 							onClick={() => {
-								setSelectedAnswers((prev) => {
+								setAnswers((prev) => {
 									const updatedAnswers = [...prev];
-									updatedAnswers[currentQuestion] = `${sliderValue}€`;
+									updatedAnswers[currentQuestion] = `${budget}€`;
 									return updatedAnswers;
 								});
 								setCurrentQuestion(3);
@@ -85,9 +85,9 @@ function Questions({ onComplete }: QuestionsProps) {
 							Je valide
 						</motion.button>
 					</div>
-				) : answers[currentQuestion]?.length > 0 ? (
+				) : listAnswers[currentQuestion]?.length > 0 ? (
 					<div className="answer-options">
-						{answers[currentQuestion].map((answer) => (
+						{listAnswers[currentQuestion].map((answer) => (
 							<motion.button
 								key={answer}
 								type="button"
