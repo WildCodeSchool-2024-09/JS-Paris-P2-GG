@@ -7,9 +7,9 @@ const ToggleTheme = () => {
 	const [darkMode, setDarkMode] = useState(true);
 	const handleToggle = () => {
 		setDarkMode(!darkMode);
-		document.body.style.backgroundImage = darkMode
-			? backgroundday
-			: desertNight;
+		document.body.style.backgroundImage = `url(${
+			!darkMode ? desertNight : backgroundday
+		})`;
 		document.body.style.color = darkMode ? "#ffffff" : "#000000";
 	};
 

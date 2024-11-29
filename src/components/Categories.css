@@ -16,7 +16,7 @@
 }
 
 .category-menu {
-	background-image: url("src/assets/buttoncategories.png");
+	background-image: url("../assets/buttoncategories.png");
 	background-color: transparent;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -41,7 +41,7 @@
 }
 
 .category-item {
-	background-image: url("/src/assets/catlist.png");
+	background-image: url("../assets/catlist.png");
 	display: flex;
 	justify-content: center;
 	align-items: center;
