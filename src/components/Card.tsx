@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Card.css";
+import lampYellow from "../assets/magic-lamp-yellow.png";
+import lampBorder from "../assets/magic-lamp-yellowborder.png";
 import { useSelectedProduct } from "../context/SelectedProductContext";
 import { useWishList } from "../context/WishListContext";
 import type Product from "../type/Product";
@@ -18,12 +20,8 @@ function Card({ product }: CardProps) {
 	const { setWishList } = useWishList();
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
-			const currentImage =
-				prevImages[productId] || "src/assets/magic-lamp-yellowborder.png";
-			const newImage =
-				currentImage === "src/assets/magic-lamp-yellowborder.png"
-					? "src/assets/magic-lamp_yellow.png"
-					: "src/assets/magic-lamp-yellowborder.png";
+			const currentImage = prevImages[productId] || lampBorder;
+			const newImage = currentImage === lampBorder ? lampYellow : lampBorder;
 			return {
 				...prevImages,
 				[productId]: newImage,
@@ -65,7 +63,7 @@ function Card({ product }: CardProps) {
 					tabIndex={0}
 				>
 					<img
-						src={images[product.id] || "src/assets/magic-lamp-yellowborder.png"}
+						src={images[product.id] || lampBorder}
 						alt="magic lamp"
 						className="magic-lamp"
 					/>

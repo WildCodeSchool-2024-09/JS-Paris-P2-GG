@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import "./Questions.css";
 import { useNavigate } from "react-router-dom";
+import Lassana from "../assets/Lassana-removebg-final.png";
+import lampSmoke from "../assets/lampsmoke.png";
 import { useAnswers } from "../context/AnswersContext";
 
 function Questions() {
@@ -42,13 +44,9 @@ function Questions() {
 	return (
 		<motion.div className="questions-container">
 			<div className="genie-lamp">
+				<motion.img src={Lassana} alt="Genie" className="genie-lassana" />
 				<motion.img
-					src="src/assets/Lassana-removebg-final.png"
-					alt="Genie"
-					className="genie-lassana"
-				/>
-				<motion.img
-					src="src/assets/lampsmoke.png"
+					src={lampSmoke}
 					alt="Lamp"
 					className="lamp-complete mirror"
 				/>
