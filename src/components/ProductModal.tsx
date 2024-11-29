@@ -1,6 +1,8 @@
 import type Product from "../type/Product";
 import "./ProductModal.css";
 import { useContext, useState } from "react";
+import lampYellow from "../assets/magic-lamp-yellow.png";
+import lampBorder from "../assets/magic-lamp-yellowborder.png";
 import BasketContext from "../context/BasketContext";
 import { useSelectedProduct } from "../context/SelectedProductContext";
 import { useWishList } from "../context/WishListContext";
@@ -20,12 +22,8 @@ function ProductModal({ product }: ProductModalProps) {
 	const { setWishList } = useWishList();
 	const changeImage = (productId: number) => {
 		setImages((prevImages) => {
-			const currentImage =
-				prevImages[productId] || "src/assets/magic-lamp-yellowborder.png";
-			const newImage =
-				currentImage === "src/assets/magic-lamp-yellowborder.png"
-					? "src/assets/magic-lamp_yellow.png"
-					: "src/assets/magic-lamp-yellowborder.png";
+			const currentImage = prevImages[productId] || lampBorder;
+			const newImage = currentImage === lampBorder ? lampYellow : lampBorder;
 			return {
 				...prevImages,
 				[productId]: newImage,
@@ -91,9 +89,7 @@ function ProductModal({ product }: ProductModalProps) {
 						tabIndex={0}
 					>
 						<img
-							src={
-								images[product.id] || "src/assets/magic-lamp-yellowborder.png"
-							}
+							src={images[product.id] || lampBorder}
 							alt="magic lamp"
 							className="magic-lamp"
 						/>

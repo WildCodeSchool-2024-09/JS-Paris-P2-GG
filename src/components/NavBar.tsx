@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
+import LogoGGlampe from "../assets/LogoGG-lampe.png";
+import coffre from "../assets/coffre.png";
+import magicLampYellow from "../assets/magic-lamp-yellow.png";
 import BasketContext from "../context/BasketContext";
 import { useWishList } from "../context/WishListContext";
 import ToggleTheme from "./ToggleTheme";
@@ -19,7 +22,7 @@ function NavBar() {
 				<section className="menu">
 					<img
 						id="logoGG"
-						src="src\assets\LogoGG_lampe.png"
+						src={LogoGGlampe}
 						alt="Logo GG - Gift Generator"
 						onClick={() => {
 							questionsLink();
@@ -32,7 +35,7 @@ function NavBar() {
 						<li>
 							<img
 								className="nav-picto"
-								src="src/assets/coffre.png"
+								src={coffre}
 								alt="Yellow chest as basket"
 							/>
 						</li>
@@ -41,7 +44,7 @@ function NavBar() {
 							<button type="button" className="navbar-wishlist-button">
 								<img
 									className="nav-picto"
-									src="src\assets\magic-lamp_yellow.png"
+									src={magicLampYellow}
 									alt="Yellow magic lamp as wishlist"
 								/>
 							</button>
