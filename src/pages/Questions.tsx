@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAnswers } from "../context/AnswersContext";
 
 function Questions() {
-	const [indexQuestion, setIndexQuestion] = useState(0);
+	const [indexQuestion, setIndexQuestion] = useState<number>(0);
 	const navigate = useNavigate();
 	const { budget, setAnswers, setBudget } = useAnswers();
 
@@ -32,6 +32,7 @@ function Questions() {
 				updatedAnswers[indexQuestion] = answer;
 				return updatedAnswers;
 			});
+
 			setIndexQuestion((prev) => prev + 1);
 		} else if (indexQuestion === 3 && answer === "Réveler mes désirs") {
 			navigate("/resultats");
