@@ -33,7 +33,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-image: url("/src/assets/questios.png");
+	background-image: url("../assets/questios.png");
 	background-size: 140%;
 	height: 200px;
 	width: 600px;
@@ -62,7 +62,7 @@
 
 .answer-button {
 	padding: 10px;
-	background-image: url(/src/assets/catlist.png);
+	background-image: url(../assets/catlist.png);
 	background-size: 100%;
 	background-position: center;
 	background-color: transparent;
@@ -114,7 +114,7 @@
 	appearance: none;
 	width: 75px;
 	height: 45px;
-	background: url(/src/assets/camel.png);
+	background: url(../assets/camel.png);
 	transform: scaleX(-1);
 	background-size: 70%;
 	background-repeat: no-repeat;

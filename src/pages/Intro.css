@@ -78,7 +78,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url("/src/assets/questios.png");
+	background-image: url("../assets/questios.png");
 	background-size: 135%;
 	background-position: center;
 	height: 250px;
@@ -89,7 +89,7 @@
 	font-family: var(--titlefont);
 }
 .dialog-button {
-	background-image: url(/src/assets/catlist.png);
+	background-image: url(../assets/catlist.png);
 	background-color: transparent;
 	background-size: 100%;
 	background-position: center;
