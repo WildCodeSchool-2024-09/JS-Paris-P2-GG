@@ -6,13 +6,11 @@ interface WishListContext {
 	WishList: Product[] | [];
 	setWishList: Dispatch<React.SetStateAction<Product[] | []>>;
 }
-const WishListContext = createContext<WishListContext>({
-	WishList: [],
-	setWishList: () => [],
-});
+
+const WishListContext = createContext<WishListContext | null>(null);
 
 export function WishListProvider({ children }: { children: ReactNode }) {
-	const [WishList, setWishList] = useState<Product[]>([]);
+	const [WishList, setWishList] = useState<Product[] | []>([]);
 	return (
 		<WishListContext.Provider value={{ WishList, setWishList }}>
 			{children}
@@ -20,5 +18,9 @@ export function WishListProvider({ children }: { children: ReactNode }) {
 	);
 }
 export const useWishList = () => {
-	return useContext(WishListContext);
+	const context = useContext(WishListContext);
+	if (!context) {
+		throw new Error("useAnswers must be used within an AnswersProvider");
+	}
+	return context;
 };

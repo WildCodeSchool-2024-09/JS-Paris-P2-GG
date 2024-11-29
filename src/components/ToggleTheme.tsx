@@ -1,13 +1,15 @@
 import "./ToggleTheme.css";
 import { useState } from "react";
+import backgroundday from "../assets/backgroundday.jpg";
+import desertNight from "../assets/desert-night.png";
 
 const ToggleTheme = () => {
 	const [darkMode, setDarkMode] = useState(true);
 	const handleToggle = () => {
 		setDarkMode(!darkMode);
 		document.body.style.backgroundImage = darkMode
-			? "url('src/assets/backgroundday.jpg')"
-			: "url('src/assets/desert-night-8807846-transformed.png')";
+			? backgroundday
+			: desertNight;
 		document.body.style.color = darkMode ? "#ffffff" : "#000000";
 	};
 
