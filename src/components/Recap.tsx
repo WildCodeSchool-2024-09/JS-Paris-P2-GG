@@ -1,6 +1,4 @@
 import "./Recap.css";
-import React from "react";
-import "./Recap.css";
 import { useAnswers } from "../context/AnswersContext";
 
 function Recap() {

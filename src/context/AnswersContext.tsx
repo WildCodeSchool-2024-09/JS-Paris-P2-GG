@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 interface AnswersContextType {
 	answers: string[];
 	budget: number;
-	setAnswers: (answers: string[]) => void;
-	setBudget: (budget: number) => void;
+	setAnswers: React.Dispatch<React.SetStateAction<string[]>>;
+	setBudget: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const AnswersContext = createContext<AnswersContextType | undefined>(undefined);

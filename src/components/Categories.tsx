@@ -4,10 +4,6 @@ import { useEffect, useState } from "react";
 import type Product from "../type/Product";
 import Card from "./Card";
 
-interface Category {
-	name: string;
-}
-
 interface CategoryData {
 	name: string;
 	products: Product[];
