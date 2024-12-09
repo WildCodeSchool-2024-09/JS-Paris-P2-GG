@@ -7,12 +7,14 @@ import ResponsiveAlert from './components/ResponsiveAlert';
 
 function App() {
 	return (
+		<>
 		<ResponsiveAlert />
 		<AnswersProvider>
 			<NavBar />
 			<Outlet />
 			<Footer />
 		</AnswersProvider>
+		</>
 	);
 }
 
