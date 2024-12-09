@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-function ResponsiveAlert = () => {
+function ResponsiveAlert() { // Enlever le "="
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     // Fonction pour vérifier la taille de l'écran
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth <= 768); 
+      setIsSmallScreen(window.innerWidth <= 768); // Par exemple, 768px pour téléphone ou petite tablette
     };
 
-    checkScreenSize(); 
-    window.addEventListener('resize', checkScreenSize);
+    checkScreenSize(); // Vérifie la taille au chargement
+    window.addEventListener('resize', checkScreenSize); // Vérifie lors du redimensionnement
 
     return () => {
-      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener('resize', checkScreenSize); // Nettoyage
     };
   }, []);
 
@@ -26,7 +26,7 @@ function ResponsiveAlert = () => {
       </div>
     )
   );
-};
+}
 
 const styles = {
   alertBox: {
