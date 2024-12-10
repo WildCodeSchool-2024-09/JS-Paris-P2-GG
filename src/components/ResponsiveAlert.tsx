@@ -45,6 +45,5 @@ const styles = {
 		fontSize: "16px",
 		fontWeight: "bold",
 	},
-};
-
+ 
 export default ResponsiveAlert;

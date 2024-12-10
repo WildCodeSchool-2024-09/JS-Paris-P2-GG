@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import ResponsiveAlert from "./components/ResponsiveAlert";
 import Footer from "./components/footer";
+import ResponsiveAlert from './components/ResponsiveAlert';
 
 function App() {
 	return (
